@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>YOCaml - Key concepts</title>
+    <link rel="canonical" href="https://yocaml.github.io/tutorial/key-concepts.html" />
+    <link rel="stylesheet" href="/assets/css/yocaml.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="YOCaml">
+    <meta name="description" content="Explanation of key points and concepts for building with YOCaml">
+    <meta name="creator" content="grm">
+    <meta name="creator" content="xvw">
+    <meta property="og:site_name" content="YOCaml">
+    <meta property="og:url" content="https://yocaml.github.io/tutorial/key-concepts.html">
+    <meta property="og:title" content="Key concepts">
+    <meta property="og:description" content="Explanation of key points and concepts for building with YOCaml">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2025-09-01T00:00:00Z">
+    <meta property="article:modified_time" content="2025-09-02T00:00:00Z">
+    <meta property="article:section" content="Tutorial">
+    </head>
+  <body>
+    <header>
+      <div>
+        <h1>YOCaml</h1>
+      </div>
+    </header>
+    <main>
+      <div>
+        <div class="article-with-side-bar">
+  
+  <aside class="sidebar yo--navigation">
+    
+    <nav>
+      <h4>Preamble</h4>
+      
+      
+      <a href="/tutorial/index.html" title="A conceptual introduction to YOCaml">
+        Introduction
+      </a>
+      
+      
+      <a href="/tutorial/why.html" title="The promotional part of YOCaml">
+        Why use YOCaml
+      </a>
+      
+      
+      <a href="/tutorial/setup.html" title="Mise en place d&apos;un environnement de développement">
+        Installation and setup
+      </a>
+      
+      
+      <span>Key concepts</span>
+      </nav>
+    
+    <nav>
+      <h4>Your first blog</h4>
+      
+      
+      <a href="/tutorial/simple-blog-goal.html" title="The goal and the introduction of the tutorial">
+        Goals &amp; Introduction
+      </a>
+      
+      
+      <a href="/tutorial/simple-blog-images.html" title="A First Action: Moving Images to the Target">
+        Moving images
+      </a>
+      
+      
+      <a href="/tutorial/simple-blog-css.html" title="A New Action: Generating CSS file">
+        Generating CSS
+      </a>
+      </nav>
+    
+    <nav>
+      <h4>Specifics</h4>
+      
+      
+      <a href="/tutorial/path.html" title="TBD">
+        Path manipulation
+      </a>
+      
+      
+      <a href="/tutorial/task.html" title="TBD">
+        Building and composing Task
+      </a>
+      </nav>
+    
+  </aside>
+  
+  <section>
+    <h1 class="main-title">Key concepts</h1>
+
+<section class="prose">
+  <p>Now that our environment is properly set up to begin our first project, let’s take a moment to review the key concepts needed to understand how YOCaml works.</p>
+
+</section>
+
+<article class="prose">
+<div class="hidden-toplevel">
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>install_printer</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>pp</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>install_printer</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Deps</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>pp</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span></code></pre>
+</div>
+<p>Since YOCaml aims to be as generic as possible, the framework
+introduces a set of concepts worth reviewing before getting
+started. That said, this section contains a lot of information, so
+don’t worry if some ideas feel unclear at first — the hands-on
+practice in the next section will help make everything much clearer!</p>
+<h2 id="runtime-and-effects"><a class="anchor" aria-hidden="true" href="#runtime-and-effects"></a>Runtime and Effects</h2>
+<p>In the previous section, we introduced the idea of a <em>runtime</em> and
+briefly mentioned <code>yocaml_unix</code>. When writing a YOCaml program, you
+typically define a function of type <code>unit -&gt; unit Yocaml.Eff.t</code>. This
+function must then be <strong>interpreted</strong> in order to actually do
+something. This is because YOCaml <strong>abstracts its primitive
+operations</strong> through <a href="https://ocaml.org/manual/5.3/effects.html">user-defined
+effects</a>. Such abstraction
+allows a YOCaml program to run virtually anywhere (including in a web
+browser) and greatly simplifies the writing of unit tests. Runtime
+plugins provide the mechanisms to interpret the effects propagated by
+YOCaml — which can be thought of as YOCaml’s equivalent of <em>system
+calls</em>.</p>
+<p>YOCaml provides three different <em>runtimes</em>:</p>
+<ul>
+<li>
+<p><a href="https://ocaml.org/p/yocaml_unix/latest">Yocaml_unix</a>: a very simple
+runtime that works on standard Unix architectures. This is the one
+we’ll mainly use throughout the guide to illustrate the different
+sections.</p>
+</li>
+<li>
+<p><a href="https://ocaml.org/p/yocaml_eio/latest">Yocaml_eio</a>: similar to the
+Unix runtime, but built on top of the <strong>multicore</strong> library
+<a href="https://ocaml.org/p/eio/latest">Eio</a>. Its API and usage are very
+close to that of the Unix runtime.</p>
+</li>
+<li>
+<p><a href="https://ocaml.org/p/yocaml_git/latest">Yocaml_git</a>: the most
+innovative runtime. When combined with a more common runtime (like
+<code>Eio</code> or <code>Unix</code>), it enables building sites directly inside a Git
+repository. These sites can later be served, for example, via
+<a href="https://mirage.io/">MirageOS</a> using tools such as
+<a href="https://github.com/robur-coop/unipi">Unipi</a>.</p>
+</li>
+</ul>
+<p>In general, runtimes expose two main functions: <code>run</code> and
+<code>server</code>. The former executes a YOCaml program, while the latter
+starts a development server — very convenient during the writing
+phase.</p>
+<p>Looking back at our previous example (and by inspecting the types):</p>
+<!-- $MDX skip -->
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>program</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Eff</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>log</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>level</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-constant-language-polymorphic-variant'>`Info</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello World, from YOCaml</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  
+</span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_unix</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>run</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>level</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-constant-language-polymorphic-variant'>`Debug</span><span class='ocaml-source'> </span><span class='ocaml-source'>program</span><span class='ocaml-source'>
+</span></code></pre>
+<p>The <code>program</code> function has the type <code>unit -&gt; unit Yocaml.Eff.t</code>, and
+we pass it to <code>Yocaml_unix.run</code> to execute it. The <code>run</code> function
+actually takes additional parameters, but we’ll look at those in
+detail when we use it in practice.</p>
+<h3 id="a-monad"><a class="anchor" aria-hidden="true" href="#a-monad"></a>A Monad</h3>
+<p>The type <code>'a Yocaml.Eff.t</code> is a <strong>monad</strong> (a kind of IO monad), which
+makes it possible to use the usual monadic operators like <code>&gt;&gt;=</code>. The
+library also provides <a href="https://ocaml.org/manual/5.3/bindingops.html">binding
+operators</a>, allowing
+YOCaml programs to be written in the following style:</p>
+<!-- $MDX skip -->
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>a_program</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Eff</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>*</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>effect_a</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>*</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>effect_b_that_use</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>*</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>c</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>effect_c</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>+</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>d</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>effect_d</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-source'>c</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-source'>d</span><span class='ocaml-source'>
+</span></code></pre>
+<p>In practice, you don’t need a deep understanding of monads to use
+YOCaml, and you can consider them <strong>just an implementation
+detail</strong>. However, you can find the full <a href="https://yocaml.github.io/doc/yocaml/yocaml/Yocaml/Eff/index.html">Eff API in the
+documentation</a>.</p>
+<h3 id="file-paths"><a class="anchor" aria-hidden="true" href="#file-paths"></a>File Paths</h3>
+<p>The concept of a <em>runtime</em> introduces potential indirections. Indeed,
+file paths are not represented in the same way on Unix, Windows, or in
+a Git repository. To handle this, YOCaml provides a
+<a href="https://yocaml.github.io/doc/yocaml/yocaml/Yocaml/Path/index.html">Path</a>
+module that abstracts the notion of a file path.</p>
+<p>In broad terms, the module exposes a <code>rel</code> function for <strong>qualifying
+relative paths</strong> and an <code>abs</code> function for <strong>qualifying absolute
+paths</strong>. Both functions take a list of strings as arguments:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>foo</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>bar</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>index.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>foo</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>bar</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>index</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>md</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>abs</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>foo</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>bar</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>absolute.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>foo</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>bar</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>absolute</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>md</span><span class='ocaml-source'>
+</span></code></pre>
+<blockquote>
+<p><strong>Note:</strong> For ease of use, neither function performs any specific
+checks. They should be seen purely as tools for describing paths,
+while functions that operate on files handle the necessary
+validations.</p>
+</blockquote>
+<p>Although it is common to primarily use <strong>relative paths</strong>, absolute
+paths are sometimes necessary, for instance, to specify the path of
+the binary currently running the program.</p>
+<blockquote>
+<p>In this example, <em>executed within Dune</em>, the path is relative, but
+typically, when run from a regular program, the computed path is
+absolute.</p>
+</blockquote>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>from_string</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Sys</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>argv</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-constant-numeric-decimal-integer'>0</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>mdx_gen</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>bc</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>exe</span><span class='ocaml-source'>
+</span></code></pre>
+<p>The module offers many features for working with file paths, and using
+YOCaml highlights several recurring patterns. For example, when
+processing lists of files, it is common to compute their destination
+based on the observed path. For instance, moving a file to another
+directory and changing its extension:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>articles</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>an_articles.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>move</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>into</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>(</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>_out</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>articles</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>change_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>html</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>_out</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>articles</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>an_articles</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>html</span><span class='ocaml-source'>
+</span></code></pre>
+<p>In YOCaml, whenever you need to work with paths, you <strong>always</strong> use
+this abstraction, which ensures compatibility across all
+<em>runtimes</em>. Throughout the practical guide, we will explain each
+feature in detail. However, if you want to learn more about paths, we
+encourage you to read <a href="/tutorial/path.html">the dedicated section</a>.</p>
+<h2 id="minimality-and-dependencies"><a class="anchor" aria-hidden="true" href="#minimality-and-dependencies"></a>Minimality and Dependencies</h2>
+<p>Building a static site generator <em>ad hoc</em> could simply involve
+providing an expressive API to move files and perform
+transformations. However, at the start of this section, we have
+already covered several concepts that might make using regular
+functions (like the <em>Eff Monad</em>) seem drastically more
+complicated. The reason YOCaml may initially appear intimidating is
+that <strong>it strives to ensure the minimality</strong> of each build phase.</p>
+<p>The concept of minimality means re-executing <strong>only the tasks
+necessary to build a target</strong>. For example, consider the following
+task:</p>
+<p><img src="/assets/images/minimality-1.svg" alt="A set of file that introduce dependencies" ></p>
+<p>Schematically, let’s say we want to produce the files <code>out1.html</code> and
+<code>out2.html</code>. To do this, we first build a <code>template</code> using the files
+<code>layout.tpl</code> and <code>article.tpl</code>, then apply it to <code>content1.md</code> and
+<code>content2.md</code> to generate <code>out1.md</code> and <code>out2.md</code> respectively. In the
+scenario shown in the first figure, the files have already been
+created. If we run the task, nothing will be executed.</p>
+<p>Now imagine <strong>we modify the file <code>content1.md</code></strong>. This change only
+affects the file <code>out1.md</code> which means that <strong>only the task producing
+<code>out1.md</code> will be re-executed</strong>, as illustrated in the following
+figure:</p>
+<p><img src="/assets/images/minimality-2.svg" alt="A set of file that introduce dependencies" ></p>
+<p>The next figure illustrates that if we modify <code>layout.tpl</code>, the entire
+dependency chain will be affected, <strong>triggering the regeneration of
+both <code>out1.md</code> and <code>out2.md</code></strong>:</p>
+<p><img src="/assets/images/minimality-3.svg" alt="A set of file that introduce dependencies" ></p>
+<p>Keeping track of the <em>tasks to be performed</em> relies on two kinds of
+dependencies: <strong>static dependencies</strong> and <strong>dynamic
+dependencies</strong>. Ensuring minimality is one of the main reasons why
+YOCaml’s API is somewhat more complex to use than just <em>simple regular
+functions</em>.</p>
+<h3 id="static-dependencies"><a class="anchor" aria-hidden="true" href="#static-dependencies"></a>Static Dependencies</h3>
+<p>We refer to dependencies as static when they can be observed
+<em>statically</em> (as the name suggests), meaning <strong>there is no need to
+execute the task to know that the dependency exists</strong>. For example,
+consider a scenario similar to the one illustrated earlier: to produce
+the file <code>out.html</code>:</p>
+<ul>
+<li>read <code>content.md</code></li>
+<li>convert the contents of <code>content.md</code> into HTML</li>
+<li>read the <code>article.tpl</code> template</li>
+<li>inject the freshly converted HTML into the template</li>
+<li>read the <code>layout.tpl</code> template</li>
+<li>inject the previous content into this template</li>
+<li>write the final content to the file <code>out.html</code></li>
+</ul>
+<p>In this scenario, <code>out.html</code> is called the <strong>target</strong>, and its
+dependencies — <strong>known statically</strong> — are: <code>content.md</code>, <code>article.tpl</code>,
+and <code>layout.tpl</code>. The task that produces <code>out.html</code> will only be
+executed if <code>out.html</code> (the target) does not exist or if at least one
+of its dependencies has been modified after <code>out.html</code>.</p>
+<p>Static dependencies are usually the ones you’ll encounter most often
+when writing a YOCaml project, and the entire framework is designed to
+make handling them easy, with support that is almost transparent to
+the user.</p>
+<h3 id="dynamic-dependencies"><a class="anchor" aria-hidden="true" href="#dynamic-dependencies"></a>Dynamic Dependencies</h3>
+<p>In contrast to static dependencies, <strong>dynamic dependencies cannot be
+observed statically</strong>. These are dependencies that are computed (<em>as
+the name suggests</em>) dynamically.</p>
+<p>A common example would be when building a file (a <em>target</em>), you first
+read another file, and that file returns a list of files to be used in
+order to generate the final output.</p>
+<h4 id="caching-system"><a class="anchor" aria-hidden="true" href="#caching-system"></a>Caching System</h4>
+<p>The presence of dynamic dependencies requires a caching system to
+maintain build information from one build to the next. Without this
+cache, it would be necessary to <strong>rebuild targets with dynamic
+dependencies every time</strong>. The cache acts as a record of the previous
+build, allowing tasks to be <em>skipped</em> when appropriate.</p>
+<h2 id="actions"><a class="anchor" aria-hidden="true" href="#actions"></a>Actions</h2>
+<p>Since the tasks we want to express can potentially introduce dynamic
+dependencies, YOCaml provides a type that represents taking the
+<code>Cache</code> as an argument and returning it (wrapped in the <code>Eff</code>
+monad). This type, exposed in the
+<a href="https://yocaml.github.io/doc/yocaml/yocaml/Yocaml/Action/index.html#type-t">Action</a>
+module, is: <code>Yocaml.Cache.t -&gt; Yocaml.Cache.t Yocaml.Eff.t</code>.</p>
+<p>In practice, a YOCaml project is <strong>a sequence of actions</strong> and looks
+like this:</p>
+<!-- $MDX skip -->
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>program</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Eff</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>cache_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>.my-cache</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>restore_cache</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache_file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>&gt;&gt;=</span><span class='ocaml-source'> </span><span class='ocaml-source'>action_a</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>&gt;&gt;=</span><span class='ocaml-source'> </span><span class='ocaml-source'>action_b</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>&gt;&gt;=</span><span class='ocaml-source'> </span><span class='ocaml-source'>action_c</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>&gt;&gt;=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>store_cache</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache_file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  
+</span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_unix</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>run</span><span class='ocaml-source'> </span><span class='ocaml-source'>program</span><span class='ocaml-source'>
+</span></code></pre>
+<p>An action modifies the cache and passes it to the next one. Actions
+can serve different purposes, such as copying files, building pages
+from multiple files, and so on.</p>
+<h4 id="binding-operators"><a class="anchor" aria-hidden="true" href="#binding-operators"></a>Binding Operators</h4>
+<p>The introduction of <a href="https://ocaml.org/manual/5.3/bindingops.html">binding
+operators</a> in OCaml made
+the use of the older infix operators somewhat obsolete. However, in
+cases of chaining actions — where the cache is passed from one action
+to the next — we find that using the classic <code>bind</code> operator (<code>&gt;&gt;=</code>)
+is more ergonomic. For example, let’s revisit the previous example
+using binding operators:</p>
+<!-- $MDX skip -->
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>program</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Eff</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>cache_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>.my-cache</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>*</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>cache</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>restore_cache</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>*</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>cache</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>action_a</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>*</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>cache</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>action_b</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>*</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>cache</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>action_c</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>store_cache</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache_file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_unix</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>run</span><span class='ocaml-source'> </span><span class='ocaml-source'>program</span><span class='ocaml-source'>
+</span></code></pre>
+<p>However, both versions of the code are equivalent, so you are free to
+choose the syntax you prefer.</p>
+<h3 id="creating-a-file"><a class="anchor" aria-hidden="true" href="#creating-a-file"></a>Creating a File</h3>
+<p>To understand what actions actually are, let’s look at a function that
+allows us to create a file:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Static</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>write_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>unit</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>The function takes two arguments: a target (the file to create) and a
+task to execute (we’ll look at this in more detail in the next
+section), and it returns an <code>Action</code> — a function that takes the cache
+and returns it wrapped in an effect. The task passed as an argument is
+the concrete action to perform, and it is the execution of this task
+that may be skipped for reasons of minimality, as discussed in the
+previous section.</p>
+<p>Here is a simple example of an action that writes a file with a
+constant value (and therefore has no dependencies):</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>target</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Static</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>write_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>target</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>const</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello World</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>create_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>As mentioned in the introduction, hands-on practice in the full
+tutorial will provide much more information and intuition on how to
+use the various functions in the YOCaml API.</p>
+<h2 id="task"><a class="anchor" aria-hidden="true" href="#task"></a>Task</h2>
+<p>We now arrive at the last of the key concepts: tasks, which we have
+implicitly referred to throughout this section. Tasks are a kind of
+function that maintain a set of static dependencies. Accordingly, the
+type <code>('a, 'b) Yocaml.Task.t</code> describes a function from <code>'a</code> to <code>'b Yocaml.Eff.t</code> along with a set of static dependencies.</p>
+<p>For example, let’s use functions from the
+<a href="https://yocaml.github.io/doc/yocaml/yocaml/Yocaml/Pipeline/index.html">Pipeline</a>
+module, which provides a set of prebuilt tasks, such as reading
+files. Here, we create a task that takes two file paths as arguments
+and constructs a task that <em>pipes</em> them:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>pipe_two_files</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>+</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>fst_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>and</span><span class='ocaml-keyword'>+</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>snd_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>fst_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>^</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-constant-character-escape'>\n</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>^</span><span class='ocaml-source'> </span><span class='ocaml-source'>snd_file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>pipe_two_files</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>ct</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>Notice that we need to use the <code>let+</code> and <code>and+</code> operators to collect
+the static dependencies of the two steps.</p>
+<p>We can also inspect the dependencies of our task, which are known
+statically, quite easily:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-source'>pipe_two_files</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>      </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>a.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>b.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>dependencies_of</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Deps</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Deps</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>a</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>md</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>b</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>md</span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span></code></pre>
+<p>And we could use our task to create a file in the following way:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>my_action</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>target</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>out.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Static</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>write_file</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>      </span><span class='ocaml-source'>target</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-source'>(</span><span class='ocaml-source'>pipe_two_files</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>         </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>a.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>         </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>b.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>my_action</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<h3 id="parallelism-and-sequentiality"><a class="anchor" aria-hidden="true" href="#parallelism-and-sequentiality"></a>Parallelism and Sequentiality</h3>
+<p>The type of our task is <code>string Yocaml.Task.ct</code>. In fact, the type
+<code>ct</code> is an alias defined as <code>'a Yocaml.Task.ct = (unit, 'a) Yocaml.Task.t</code>, which uses the <strong>Applicative</strong> interface of
+tasks. This design <strong>allows static dependencies to be collected</strong>,
+since each task can be executed independently (this is the difference
+between applicative execution and monadic execution, which is
+sequential).</p>
+<p>However, sometimes we want <strong>to use the result of one task as the
+input to another task</strong>. This is especially useful when applying a
+sequence of templates in a <em>cascading</em> manner. That’s why a task’s
+type is parameterized by both its input and output types.</p>
+<p>For these scenarios, we need a construct slightly more powerful than
+an applicative: an <strong>Arrow</strong> which provide composition operators that
+allow you to statically combine the static part of a task (its
+dependencies) while <em>piping</em> the result. Unlike Applicatives, Arrows
+do not offer simple syntax with binding operators and require the use
+of <a href="https://yocaml.github.io/doc/yocaml/yocaml/Yocaml/Task/index.html#infix-operators">infix
+operators</a>,
+which are a bit more cumbersome to use.</p>
+<p>For example, to rewrite <code>pipe_two_files</code> using Arrows, we could do the
+following:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>pipe_two_files_using_arrow</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'>)</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword-operator'>&amp;&amp;&amp;</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'>)</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>&gt;&gt;|</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>fst_file</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>snd_file</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>          </span><span class='ocaml-source'>fst_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>^</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-constant-character-escape'>\n</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>^</span><span class='ocaml-source'> </span><span class='ocaml-source'>snd_file</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>pipe_two_files_using_arrow</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>unit</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>This function is identical to the previous one but much more
+intimidating because it requires programming in a
+<a href="https://en.wikipedia.org/wiki/Tacit_programming"><em>point-free</em></a> style,
+which can quickly become frustrating. However, in YOCaml, we usually
+use <code>&gt;&gt;|</code> to <em>pipe</em> a task with a regular function and <code>&gt;&gt;&gt;</code> to <em>pipe</em>
+two tasks together.</p>
+<h3 id="combining-applicative-notation-and-arrows"><a class="anchor" aria-hidden="true" href="#combining-applicative-notation-and-arrows"></a>Combining Applicative Notation and Arrows</h3>
+<p>To keep our tutorials as simple as possible, we will primarily use
+applicative notation and only rely on Arrows when strictly necessary.</p>
+<p>For example, here is a case that uses both notations. The applicative
+approach is used to build everything that can be resolved without
+sequentiality, and at the end, Arrow notation is used to introduce
+sequentiality by applying templates (using a function implemented for
+the purposes of this example, which does not exist in the YOCaml API
+for simplicity):</p>
+<div class="hidden-toplevel">
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Dummy_tpl</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>normalize</span><span class='ocaml-source'> </span><span class='ocaml-source'>r</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>[</span><span class='ocaml-source'>(</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>result</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Data</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-support-type'>string</span><span class='ocaml-source'> </span><span class='ocaml-source'>r</span><span class='ocaml-source'>)</span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>apply_tpl</span><span class='ocaml-source'> </span><span class='ocaml-source'>tpl</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_jingoo</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>as_template</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Dummy_tpl</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>from_string</span><span class='ocaml-source'> </span><span class='ocaml-source'>tpl</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
+</div>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>article_task</span><span class='ocaml-source'> </span><span class='ocaml-source'>source</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>prepare</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>config_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>config.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword'>let</span><span class='ocaml-keyword'>+</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>content</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>source</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword'>and</span><span class='ocaml-keyword'>+</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>config</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>config_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-source'>(</span><span class='ocaml-source'>config</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_markdown</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>from_string_to_html</span><span class='ocaml-source'> </span><span class='ocaml-source'>content</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-comment-block'>(*</span><span class='ocaml-comment-block'> Here, we are using arrow API </span><span class='ocaml-comment-block'>*)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>prepare</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>&gt;&gt;&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>apply_tpl</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>article-tpl.html</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>&gt;&gt;&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>apply_tpl</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>layout-tpl.html</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>   </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> 
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>article_task</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>unit</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>The first parameter is used to store the metadata of the article — in
+this case, our configuration — and we sequentially apply the
+<code>article.html</code> and <code>layout.html</code> templates (so the content resulting
+from applying the <code>article.html</code> template to our configuration and
+content pair will be passed to the <code>layout.html</code> template).</p>
+<p>As before, we can inspect the static dependencies of our task:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>dependencies_of</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-source'>article_task</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>an_article.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Deps</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-constant-language-capital-identifier'>Deps</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>an_article</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>md</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>article</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'>tpl</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>html</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>config</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>md</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'>layout</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'>tpl</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>html</span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span></code></pre>
+<p>And we can write an action that writes the file we have
+constructed. Here, since we associate the file content with metadata
+(from our <code>config.md</code>), we use a slightly different function,
+<code>Yocaml.Action.Static.write_file_with_metadata</code>:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>article_action</span><span class='ocaml-source'> </span><span class='ocaml-source'>source</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>target</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>      </span><span class='ocaml-source'>source</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>move</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>into</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>(</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>_target_</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>change_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>html</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>and</span><span class='ocaml-source'> </span><span class='ocaml-source'>task</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>article_task</span><span class='ocaml-source'> </span><span class='ocaml-source'>source</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Static</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>write_file_with_metadata</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>       </span><span class='ocaml-source'>target</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>       </span><span class='ocaml-source'>task</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>article_action</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>Since <code>Yocaml.Action.Static.write_file_with_metadata</code> is an <code>Action</code>,
+it returns a function <code>Cache.t -&gt; Cache.t Eff.t</code>, so by <strong>partial
+application</strong> we obtain a new action. You can find more examples of
+task construction and composition in the <a href="/tutorial/task.html">dedicated
+tutorial</a>.</p>
+<h2 id="conclusion"><a class="anchor" aria-hidden="true" href="#conclusion"></a>Conclusion</h2>
+<p>We’ve covered many concepts, but at this point, we have seen enough to
+dive into the concrete design of a blog using YOCaml. If some things
+still seem unclear, the hands - on tutorial should clarify everything.</p>
+<p><em>You are ready to get to the heart of the matter</em>!</p>
+
+</article>
+
+    
+    <div class="prev-next">
+      
+      <a href="/tutorial/setup.html"
+         title="Mise en place d&apos;un environnement de développement"
+         class="previous">
+        <h4>Previous</h4>
+        <span class="section-title">Preamble</span>
+        <span>Installation and setup</span>
+      </a>
+      
+      
+      <a href="/tutorial/simple-blog-goal.html"
+         title="The goal and the introduction of the tutorial"
+         class="next">
+        <h4>Next</h4>
+        <span class="section-title">Your first blog</span>
+        <span>Goals &amp; Introduction</span>
+      </a>
+      
+    </div>
+    
+  </section>
+  
+  <aside class="toc yo--navigation">
+    <nav id="active-toc">
+      <h4>Table of content</h4>
+      <ul><li><a href="#runtime-and-effects" data-toc-target="runtime-and-effects">Runtime and Effects</a><ul><li><a href="#a-monad" data-toc-target="a-monad">A Monad</a></li><li><a href="#file-paths" data-toc-target="file-paths">File Paths</a></li></ul></li><li><a href="#minimality-and-dependencies" data-toc-target="minimality-and-dependencies">Minimality and Dependencies</a><ul><li><a href="#static-dependencies" data-toc-target="static-dependencies">Static Dependencies</a></li><li><a href="#dynamic-dependencies" data-toc-target="dynamic-dependencies">Dynamic Dependencies</a><ul><li><a href="#caching-system" data-toc-target="caching-system">Caching System</a></li></ul></li></ul></li><li><a href="#actions" data-toc-target="actions">Actions</a><ul><li><a href="#binding-operators" data-toc-target="binding-operators">Binding Operators</a></li></ul></li><li><a href="#creating-a-file" data-toc-target="creating-a-file">Creating a File</a></li><li><a href="#task" data-toc-target="task">Task</a><ul><li><a href="#parallelism-and-sequentiality" data-toc-target="parallelism-and-sequentiality">Parallelism and Sequentiality</a></li><li><a href="#combining-applicative-notation-and-arrows" data-toc-target="combining-applicative-notation-and-arrows">Combining Applicative Notation and Arrows</a></li></ul></li><li><a href="#conclusion" data-toc-target="conclusion">Conclusion</a></li></ul>
+    </nav>
+  </aside>
+  
+</div>
+
+
+      </div>
+    </main>
+    <footer>
+      <div>
+        <div class="yo--grid-col-autofill yo--navigation modules">
+          <nav>
+            <h4>Navigation</h4>
+            <a href="/">Home</a>
+            <a href="/tutorial">Tutorial</a>
+            <a href="https://github.com/xhtmlboi/yocaml">
+              YOCaml repository
+            </a>
+            <a href="https://github.com/yocaml/yocaml-www">
+              Site repository
+            </a>
+            <a href="https://yocaml.github.io/doc">API Doc</a>
+          </nav>
+          <nav>
+            <h4>Bug Trackers</h4>
+            <a href="https://github.com/xhtmlboi/yocaml/issues">
+              YOCaml
+            </a>
+            <a href="https://github.com/yocaml/yocaml-www/issues">
+              Site
+            </a>
+            
+            <a href="https://github.com/yocaml/yocaml-www/blob/main/content/tutorial/key-concepts.md">
+              Page source
+            </a>
+            
+          </nav>
+        </div>
+      </div>
+      <div class="bottom-line">
+        <div>
+          <a href="https://ocaml.org" title="OCaml website">
+            <svg role="img" class="yo--icon">
+              <use href="/assets/images/icons.svg#ocaml" />
+            </svg>
+          </a>  
+        </div>
+        <div class="yo--flex-full">
+          Proudly generated by
+          <a href="https://github.com/xhtmlboi/yocaml">
+            YOCaml
+          </a>
+        </div>
+        <div class="yo--flex-full yo--text-right">
+          Generator under
+          <a href="https://gnu.org/licenses/gpl-3.0.html">
+            GPL 3.0
+          </a>
+          <br/>
+          Content under
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            CC BY-SA
+          </a>
+        </div>
+        <div>
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <svg role="img" class="yo--icon">
+              <use href="/assets/images/icons.svg#cc" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/frontend.bc.js"></script>
+  </body>
+</html>

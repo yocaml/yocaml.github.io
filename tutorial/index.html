@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>YOCaml - Introduction</title>
+    <link rel="canonical" href="https://yocaml.github.io/tutorial/index.html" />
+    <link rel="stylesheet" href="/assets/css/yocaml.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="YOCaml">
+    <meta name="description" content="A conceptual introduction to YOCaml">
+    <meta name="creator" content="grm">
+    <meta name="creator" content="xvw">
+    <meta property="og:site_name" content="YOCaml">
+    <meta property="og:url" content="https://yocaml.github.io/tutorial/index.html">
+    <meta property="og:title" content="Introduction">
+    <meta property="og:description" content="A conceptual introduction to YOCaml">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2025-08-27T00:00:00Z">
+    <meta property="article:modified_time" content="2025-08-29T00:00:00Z">
+    <meta property="article:section" content="Tutorial">
+    </head>
+  <body>
+    <header>
+      <div>
+        <h1>YOCaml</h1>
+      </div>
+    </header>
+    <main>
+      <div>
+        <div class="article-with-side-bar">
+  
+  <aside class="sidebar yo--navigation">
+    
+    <nav>
+      <h4>Preamble</h4>
+      
+      
+      <span>Introduction</span>
+      
+      
+      <a href="/tutorial/why.html" title="The promotional part of YOCaml">
+        Why use YOCaml
+      </a>
+      
+      
+      <a href="/tutorial/setup.html" title="Mise en place d&apos;un environnement de développement">
+        Installation and setup
+      </a>
+      
+      
+      <a href="/tutorial/key-concepts.html" title="Explanation of key points and concepts for building with YOCaml">
+        Key concepts
+      </a>
+      </nav>
+    
+    <nav>
+      <h4>Your first blog</h4>
+      
+      
+      <a href="/tutorial/simple-blog-goal.html" title="The goal and the introduction of the tutorial">
+        Goals &amp; Introduction
+      </a>
+      
+      
+      <a href="/tutorial/simple-blog-images.html" title="A First Action: Moving Images to the Target">
+        Moving images
+      </a>
+      
+      
+      <a href="/tutorial/simple-blog-css.html" title="A New Action: Generating CSS file">
+        Generating CSS
+      </a>
+      </nav>
+    
+    <nav>
+      <h4>Specifics</h4>
+      
+      
+      <a href="/tutorial/path.html" title="TBD">
+        Path manipulation
+      </a>
+      
+      
+      <a href="/tutorial/task.html" title="TBD">
+        Building and composing Task
+      </a>
+      </nav>
+    
+  </aside>
+  
+  <section>
+    <h1 class="main-title">Introduction</h1>
+
+<section class="prose">
+  <p>Welcome to the <strong>YOCaml</strong> user guide! This page is quite <em>marketing-oriented</em>.</p>
+
+</section>
+
+<article class="prose">
+<h3 id="what-is-yocaml"><a class="anchor" aria-hidden="true" href="#what-is-yocaml"></a>What is YOCaml</h3>
+<p>YOCaml is a <em>framework</em> used to describe <em>build systems</em> in
+<a href="https://ocaml.org">OCaml</a>, released under
+<a href="https://raw.githubusercontent.com/xhtmlboi/yocaml/refs/heads/main/LICENSE">GPL3</a>
+license, with an <em>API</em> suited for creating <a href="https://en.wikipedia.org/wiki/Static_site_generator">static site
+generators</a>. Unlike
+<a href="https://gohugo.io/">Hugo</a>, <a href="https://jekyllrb.com/">Jekyll</a> or
+<a href="https://www.getzola.org/">Zola</a>, which provide a <em>CLI</em>, YOCaml is
+closer to <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, as it imposes <strong>no
+structure</strong>, requiring you to build your generator step by step. This
+offers the opportunity to create diverse projects such as a <a href="https://gr-im.github.io">personal
+blog</a>, a <a href="https://maiste.fr/">personal wiki</a>,
+<a href="https://site.condor-du-plateau.fr/">more experimental sites</a>, a
+<a href="https://ring.muhokama.fun">webring</a> or even this documentation
+website.</p>
+<h4 id="written-in-ocaml"><a class="anchor" aria-hidden="true" href="#written-in-ocaml"></a>Written in OCaml</h4>
+<p>YOCaml is, as its name suggests, written in the wonderful language
+<a href="https://ocaml.org">OCaml</a>, a programming language that is
+<strong>statically typed</strong> (with type inference), <strong>functional</strong>,
+<strong>imperative</strong>, and <strong>object-oriented</strong>, and that features a rich
+module system. While the simplest reason we wrote YOCaml in OCaml is
+probably that <em>we like OCaml</em>, the language’s grammatical and
+conceptual flexibility made it easier to design an API that we find
+<strong>expressive</strong>. In addition, OCaml is a high-performance language with
+a rich ecosystem — if you want to convince yourself to use OCaml, we
+invite you to read <a href="https://xvw.lol/en/articles/why-ocaml.html">Why I chose OCaml as my primary
+language</a>.</p>
+<h5 id="adhering-to-the-ecosystem"><a class="anchor" aria-hidden="true" href="#adhering-to-the-ecosystem"></a>Adhering to the ecosystem</h5>
+<p>YOCaml was designed in a <em>very modular</em> way, allowing us to take
+advantage of the OCaml ecosystem. As a result, even though YOCaml is
+packaged with a set of <em>standard plugins</em>, the core API makes it
+fairly easy to integrate other libraries. For example,
+<a href="https://github.com/Psi-Prod/Capsule">users</a> have
+<a href="https://github.com/xhtmlboi/yocaml/issues/38">requested</a> support for
+<a href="https://gmi.sbgodin.fr/htmgem/docs/tutogemtext-en.gmi">Gemtext</a>, in
+order to serve their site over
+<a href="https://en.wikipedia.org/wiki/Gemini_(protocol)">Gemini</a>. No changes
+were required in YOCaml’s core, <em>demonstrating its flexibility</em>.</p>
+<h3 id="easy-deployment"><a class="anchor" aria-hidden="true" href="#easy-deployment"></a>Easy deployment</h3>
+<p>One of the <strong>great strengths</strong> of statically generated sites is that
+they are very easy to deploy. In fact, a simple static server is
+enough! However, YOCaml goes further: thanks to the
+<a href="https://mirage.io/">Mirage</a> project, it is possible to directly
+generate documents using a <em>Git repository</em> as a file system
+(compatible with <a href="https://pages.github.com/">GitHub Pages</a>) and serve
+them statically. For example, by using
+<a href="https://github.com/robur-coop/unipi">Unipi</a>, you can build an
+<strong>operating system (unikernel) designed to statically serve your
+site</strong> with great ease!</p>
+
+</article>
+
+    
+    <div class="prev-next">
+      
+      <a href="#"></a>
+      
+      
+      <a href="/tutorial/why.html"
+         title="The promotional part of YOCaml"
+         class="next">
+        <h4>Next</h4>
+        <span class="section-title">Preamble</span>
+        <span>Why use YOCaml</span>
+      </a>
+      
+    </div>
+    
+  </section>
+  
+  <aside class="toc yo--navigation">
+    <nav id="active-toc">
+      <h4>Table of content</h4>
+      <ul><li><a href="#what-is-yocaml" data-toc-target="what-is-yocaml">What is YOCaml</a><ul><li><a href="#written-in-ocaml" data-toc-target="written-in-ocaml">Written in OCaml</a><ul><li><a href="#adhering-to-the-ecosystem" data-toc-target="adhering-to-the-ecosystem">Adhering to the ecosystem</a></li></ul></li></ul></li><li><a href="#easy-deployment" data-toc-target="easy-deployment">Easy deployment</a></li></ul>
+    </nav>
+  </aside>
+  
+</div>
+
+
+      </div>
+    </main>
+    <footer>
+      <div>
+        <div class="yo--grid-col-autofill yo--navigation modules">
+          <nav>
+            <h4>Navigation</h4>
+            <a href="/">Home</a>
+            <a href="/tutorial">Tutorial</a>
+            <a href="https://github.com/xhtmlboi/yocaml">
+              YOCaml repository
+            </a>
+            <a href="https://github.com/yocaml/yocaml-www">
+              Site repository
+            </a>
+            <a href="https://yocaml.github.io/doc">API Doc</a>
+          </nav>
+          <nav>
+            <h4>Bug Trackers</h4>
+            <a href="https://github.com/xhtmlboi/yocaml/issues">
+              YOCaml
+            </a>
+            <a href="https://github.com/yocaml/yocaml-www/issues">
+              Site
+            </a>
+            
+            <a href="https://github.com/yocaml/yocaml-www/blob/main/content/tutorial/index.md">
+              Page source
+            </a>
+            
+          </nav>
+        </div>
+      </div>
+      <div class="bottom-line">
+        <div>
+          <a href="https://ocaml.org" title="OCaml website">
+            <svg role="img" class="yo--icon">
+              <use href="/assets/images/icons.svg#ocaml" />
+            </svg>
+          </a>  
+        </div>
+        <div class="yo--flex-full">
+          Proudly generated by
+          <a href="https://github.com/xhtmlboi/yocaml">
+            YOCaml
+          </a>
+        </div>
+        <div class="yo--flex-full yo--text-right">
+          Generator under
+          <a href="https://gnu.org/licenses/gpl-3.0.html">
+            GPL 3.0
+          </a>
+          <br/>
+          Content under
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            CC BY-SA
+          </a>
+        </div>
+        <div>
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <svg role="img" class="yo--icon">
+              <use href="/assets/images/icons.svg#cc" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/frontend.bc.js"></script>
+  </body>
+</html>

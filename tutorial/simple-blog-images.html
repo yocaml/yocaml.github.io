@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>YOCaml - Moving images</title>
+    <link rel="canonical" href="https://yocaml.github.io/tutorial/simple-blog-images.html" />
+    <link rel="stylesheet" href="/assets/css/yocaml.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="YOCaml">
+    <meta name="description" content="A First Action: Moving Images to the Target">
+    <meta name="creator" content="grm">
+    <meta name="creator" content="xvw">
+    <meta property="og:site_name" content="YOCaml">
+    <meta property="og:url" content="https://yocaml.github.io/tutorial/simple-blog-images.html">
+    <meta property="og:title" content="Moving images">
+    <meta property="og:description" content="A First Action: Moving Images to the Target">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2025-09-03T00:00:00Z">
+    <meta property="article:modified_time" content="2025-09-03T00:00:00Z">
+    <meta property="article:section" content="Tutorial">
+    </head>
+  <body>
+    <header>
+      <div>
+        <h1>YOCaml</h1>
+      </div>
+    </header>
+    <main>
+      <div>
+        <div class="article-with-side-bar">
+  
+  <aside class="sidebar yo--navigation">
+    
+    <nav>
+      <h4>Preamble</h4>
+      
+      
+      <a href="/tutorial/index.html" title="A conceptual introduction to YOCaml">
+        Introduction
+      </a>
+      
+      
+      <a href="/tutorial/why.html" title="The promotional part of YOCaml">
+        Why use YOCaml
+      </a>
+      
+      
+      <a href="/tutorial/setup.html" title="Mise en place d&apos;un environnement de développement">
+        Installation and setup
+      </a>
+      
+      
+      <a href="/tutorial/key-concepts.html" title="Explanation of key points and concepts for building with YOCaml">
+        Key concepts
+      </a>
+      </nav>
+    
+    <nav>
+      <h4>Your first blog</h4>
+      
+      
+      <a href="/tutorial/simple-blog-goal.html" title="The goal and the introduction of the tutorial">
+        Goals &amp; Introduction
+      </a>
+      
+      
+      <span>Moving images</span>
+      
+      
+      <a href="/tutorial/simple-blog-css.html" title="A New Action: Generating CSS file">
+        Generating CSS
+      </a>
+      </nav>
+    
+    <nav>
+      <h4>Specifics</h4>
+      
+      
+      <a href="/tutorial/path.html" title="TBD">
+        Path manipulation
+      </a>
+      
+      
+      <a href="/tutorial/task.html" title="TBD">
+        Building and composing Task
+      </a>
+      </nav>
+    
+  </aside>
+  
+  <section>
+    <h1 class="main-title">Moving images</h1>
+
+<section class="prose">
+  <p>With our skeleton in place, we can now create our first action. We’ll start by simply moving some of the <em>assets</em>, the images, to the target directory, <code>_www</code>.</p>
+
+</section>
+
+<article class="prose">
+<div class="hidden-toplevel">
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>install_printer</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>pp</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>install_printer</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Deps</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>pp</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>www</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>_www</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span></code></pre>
+</div>
+<p>To start, download the file <a href="/assets/images/icons.svg">icons.svg</a> into
+your <code>assets/images</code> directory. It contains several SVG icons (the
+OCaml logo, the <a href="https://creativecommons.org/">Creative Commons</a> logo,
+and an RSS/Atom logo) sourced from <a href="https://simpleicons.org/">Simple
+Icons</a>.</p>
+<blockquote>
+<p>The SVG file merges multiple symbols, making it easy to invoke icons
+using the
+<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/use"><code>&lt;use&gt;</code></a>
+tag. This allows you to include an external SVG while keeping the
+ability to style it with CSS (which is not possible with the <code>&lt;img&gt;</code>
+tag). The <code>icons</code> file may not be directly viewable in your browser,
+but rest assured, it is the file used for this site.</p>
+</blockquote>
+<h2 id="copying-a-file"><a class="anchor" aria-hidden="true" href="#copying-a-file"></a>Copying a File</h2>
+<p>YOCaml provides a predefined action to simply copy a file into a given
+directory:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>copy_file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> ?</span><span class='ocaml-source'>new_name</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-support-type'>string</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>into</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>First, we’ll create an action that can copy a single file. Later,
+we’ll see how to <em>batch</em> this action. We also create variables to help
+us more easily qualify the paths we’ll be using:</p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>assets</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>assets</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>images</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>assets</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>images</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>copy_image</span><span class='ocaml-source'> </span><span class='ocaml-source'>image_path</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>images_path</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>www</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>images</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>copy_file</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>into</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>images_path</span><span class='ocaml-source'> </span><span class='ocaml-source'>image_path</span><span class='ocaml-source'>
+</span></code></pre>
+<p>We can now modify our <code>program</code> function to copy our <code>icons.svg</code> file
+by chaining the action we just created:</p>
+<pre><code><span class='diff-source'> let program () =
+</span><span class='diff-source'>   let open Eff in
+</span><span class='diff-source'>   let cache = Path.(www / &quot;.cache&quot;) in
+</span><span class='diff-source'>   Action.restore_cache cache
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  &gt;&gt;= copy_image Path.(images / &quot;icons.svg&quot;)
+</span><span class='diff-source'>   &gt;&gt;= Action.store_cache cache
+</span></code></pre>
+<p>If we run our program using the command <code>dune exec bin/blog.exe</code>, the
+standard output should display the following logs:</p>
+<pre><code><span class='shell-source'>[DEBUG]Cache restored from </span><span class='shell-punctuation-definition-string-begin'>`</span><span class='shell-string-interpolated-backtick'>./_www/.cache</span><span class='shell-punctuation-definition-string-end'>`</span><span class='shell-source'>
+</span><span class='shell-source'>[DEBUG]</span><span class='shell-punctuation-definition-string-begin'>`</span><span class='shell-string-interpolated-backtick'>./_www/images/icons.svg</span><span class='shell-punctuation-definition-string-end'>`</span><span class='shell-source'> will be written
+</span><span class='shell-source'>[INFO]</span><span class='shell-punctuation-definition-string-begin'>`</span><span class='shell-string-interpolated-backtick'>./_www/images/icons.svg</span><span class='shell-punctuation-definition-string-end'>`</span><span class='shell-source'> has been written
+</span><span class='shell-source'>[DEBUG]Cache stored </span><span class='shell-keyword-control'>in</span><span class='shell-source'> </span><span class='shell-punctuation-definition-string-begin'>`</span><span class='shell-string-interpolated-backtick'>./_www/.cache</span><span class='shell-punctuation-definition-string-end'>`</span><span class='shell-source'>
+</span></code></pre>
+<p>If we immediately run the command again, the output should indicate
+that the <code>icons.svg</code> file is already up to date, ensuring that
+<strong>minimality has been respected</strong>:</p>
+<pre><code><span class='shell-source'>[DEBUG]Cache restored from </span><span class='shell-punctuation-definition-string-begin'>`</span><span class='shell-string-interpolated-backtick'>./_www/.cache</span><span class='shell-punctuation-definition-string-end'>`</span><span class='shell-source'>
+</span><span class='shell-source'>[DEBUG]</span><span class='shell-punctuation-definition-string-begin'>`</span><span class='shell-string-interpolated-backtick'>./_www/images/icons.svg</span><span class='shell-punctuation-definition-string-end'>`</span><span class='shell-source'> is already up-to-date
+</span><span class='shell-source'>[DEBUG]Cache stored </span><span class='shell-keyword-control'>in</span><span class='shell-source'> </span><span class='shell-punctuation-definition-string-begin'>`</span><span class='shell-string-interpolated-backtick'>./_www/.cache</span><span class='shell-punctuation-definition-string-end'>`</span><span class='shell-source'>
+</span></code></pre>
+<p>You can verify that everything works by modifying the source file or
+deleting the target to ensure that the file is only copied when
+necessary.</p>
+<p>However, specifying each potential image manually is a bit tedious. We
+would like to apply this action to all images in the <code>assets/images</code>
+directory.</p>
+<h2 id="batching-multiple-actions"><a class="anchor" aria-hidden="true" href="#batching-multiple-actions"></a>Batching Multiple Actions</h2>
+<p>The
+<a href="https://yocaml.github.io/doc/yocaml/yocaml/Yocaml/Batch/index.html">Batch</a>
+module provides various functions to collapse a series of actions into
+a single one. Let’s focus on the following function:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Batch</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>iter_files</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> ?</span><span class='ocaml-source'>where</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>bool</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>This function will <strong>produce an action</strong> that goes through all files
+in a directory (referenced by a path, as always) that satisfy the
+<code>where</code> predicate (if provided; otherwise, all child files are
+considered valid) and <strong>applies an action to them</strong>. The function
+itself is an action.</p>
+<p>What we want to do is go through all the images in the <code>assets/images</code>
+directory and apply our <code>copy_image</code> function, which is exactly of
+type <code>Path.t -&gt; Action.t</code> — <em>perfect!</em></p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>copy_images</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Batch</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>iter_files</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    ~</span><span class='ocaml-source'>where</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>svg</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword-operator'>||</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>png</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword-operator'>||</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>jpg</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword-operator'>||</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>gif</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>images</span><span class='ocaml-source'> </span><span class='ocaml-source'>copy_image</span><span class='ocaml-source'>
+</span></code></pre>
+<p>If we inspect the type of <code>copy_images</code>, we can see that the function
+has the type <code>Action.t</code>. We can therefore modify <code>program</code> (and add
+more images to <code>assets/images</code> to verify that everything works):</p>
+<pre><code><span class='diff-source'> let program () =
+</span><span class='diff-source'>   let open Eff in
+</span><span class='diff-source'>   let cache = Path.(www / &quot;.cache&quot;) in
+</span><span class='diff-source'>   Action.restore_cache cache
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  &gt;&gt;= copy_image
+</span><span class='diff-source'>   &gt;&gt;= Action.store_cache cache
+</span></code></pre>
+<p>We have designed our first action, which simply moves files from a
+directory (only when necessary) while respecting a certain
+predicate. Before moving on, we can make a few minor adjustments!</p>
+<h2 id="minor-improvements"><a class="anchor" aria-hidden="true" href="#minor-improvements"></a>Minor Improvements</h2>
+<p>Even though the code we wrote is perfectly valid, there are at least
+two possible improvements. First, one might question the need to
+separate the <code>copy_image</code> and <code>copy_images</code> actions. Indeed,
+<code>copy_image</code> is essentially an <em>alias</em> for <code>copy_file</code>, so we could
+rewrite <code>copy_images</code> as follows:</p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>copy_images</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>images_path</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>www</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>images</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Batch</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>iter_files</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    ~</span><span class='ocaml-source'>where</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>svg</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword-operator'>||</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>png</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword-operator'>||</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>jpg</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword-operator'>||</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>gif</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>images</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>copy_file</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>into</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>images_path</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
+<h3 id="a-utility-function"><a class="anchor" aria-hidden="true" href="#a-utility-function"></a>A Utility Function</h3>
+<p>The second possible improvement concerns the way we check whether a
+path is an image. The code is quite redundant, and we might want to
+handle other files with multiple possible extensions (notably
+fonts). We could write a helper function that verifies whether a file
+has one of the extensions provided in a list:</p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>with_ext</span><span class='ocaml-source'> </span><span class='ocaml-source'>exts</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>List</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>exists</span><span class='ocaml-source'>  </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-source'> </span><span class='ocaml-source'>ext</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-source'>ext</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>exts</span><span class='ocaml-source'>
+</span></code></pre>
+<p>This allows us to rewrite our <code>copy_images</code> action in a more concise
+way (without losing readability):</p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>copy_images</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>images_path</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>www</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>images</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>and</span><span class='ocaml-source'> </span><span class='ocaml-source'>where</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>with_ext</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>svg</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>png</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>jpg</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>gif</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Batch</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>iter_files</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    ~</span><span class='ocaml-source'>where</span><span class='ocaml-source'> </span><span class='ocaml-source'>images</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>copy_file</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>into</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>images_path</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
+<p>And there you have it! We’ve coded our <strong>very first action</strong> and laid
+the groundwork for a static site generator! <em>Awesome</em>.</p>
+<h2 id="conclusion"><a class="anchor" aria-hidden="true" href="#conclusion"></a>Conclusion</h2>
+<p>In this article, we reviewed how to use actions and batches of actions
+for very simple tasks. Implicitly, we also saw how well actions
+compose and how partial application can handle the cache so that, in
+the end, you can chain actions together in the main program.</p>
+<p>In the next part, we’ll learn how to create files with YOCaml.</p>
+
+</article>
+
+    
+    <div class="prev-next">
+      
+      <a href="/tutorial/simple-blog-goal.html"
+         title="The goal and the introduction of the tutorial"
+         class="previous">
+        <h4>Previous</h4>
+        <span class="section-title">Your first blog</span>
+        <span>Goals &amp; Introduction</span>
+      </a>
+      
+      
+      <a href="/tutorial/simple-blog-css.html"
+         title="A New Action: Generating CSS file"
+         class="next">
+        <h4>Next</h4>
+        <span class="section-title">Your first blog</span>
+        <span>Generating CSS</span>
+      </a>
+      
+    </div>
+    
+  </section>
+  
+  <aside class="toc yo--navigation">
+    <nav id="active-toc">
+      <h4>Table of content</h4>
+      <ul><li><a href="#copying-a-file" data-toc-target="copying-a-file">Copying a File</a></li><li><a href="#batching-multiple-actions" data-toc-target="batching-multiple-actions">Batching Multiple Actions</a></li><li><a href="#minor-improvements" data-toc-target="minor-improvements">Minor Improvements</a><ul><li><a href="#a-utility-function" data-toc-target="a-utility-function">A Utility Function</a></li></ul></li><li><a href="#conclusion" data-toc-target="conclusion">Conclusion</a></li></ul>
+    </nav>
+  </aside>
+  
+</div>
+
+
+      </div>
+    </main>
+    <footer>
+      <div>
+        <div class="yo--grid-col-autofill yo--navigation modules">
+          <nav>
+            <h4>Navigation</h4>
+            <a href="/">Home</a>
+            <a href="/tutorial">Tutorial</a>
+            <a href="https://github.com/xhtmlboi/yocaml">
+              YOCaml repository
+            </a>
+            <a href="https://github.com/yocaml/yocaml-www">
+              Site repository
+            </a>
+            <a href="https://yocaml.github.io/doc">API Doc</a>
+          </nav>
+          <nav>
+            <h4>Bug Trackers</h4>
+            <a href="https://github.com/xhtmlboi/yocaml/issues">
+              YOCaml
+            </a>
+            <a href="https://github.com/yocaml/yocaml-www/issues">
+              Site
+            </a>
+            
+            <a href="https://github.com/yocaml/yocaml-www/blob/main/content/tutorial/simple-blog-images.md">
+              Page source
+            </a>
+            
+          </nav>
+        </div>
+      </div>
+      <div class="bottom-line">
+        <div>
+          <a href="https://ocaml.org" title="OCaml website">
+            <svg role="img" class="yo--icon">
+              <use href="/assets/images/icons.svg#ocaml" />
+            </svg>
+          </a>  
+        </div>
+        <div class="yo--flex-full">
+          Proudly generated by
+          <a href="https://github.com/xhtmlboi/yocaml">
+            YOCaml
+          </a>
+        </div>
+        <div class="yo--flex-full yo--text-right">
+          Generator under
+          <a href="https://gnu.org/licenses/gpl-3.0.html">
+            GPL 3.0
+          </a>
+          <br/>
+          Content under
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            CC BY-SA
+          </a>
+        </div>
+        <div>
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <svg role="img" class="yo--icon">
+              <use href="/assets/images/icons.svg#cc" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/frontend.bc.js"></script>
+  </body>
+</html>
