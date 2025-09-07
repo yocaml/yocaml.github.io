@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>YOCaml - Our first pages</title>
+    <link rel="canonical" href="https://yocaml.github.io/tutorial/simple-blog-pages.html" />
+    <link rel="stylesheet" href="/assets/css/yocaml.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="YOCaml">
+    <meta name="description" content="Creating the first pages: written in Markdown, converted to HTML, and injected into templates">
+    <meta name="creator" content="grm">
+    <meta name="creator" content="xvw">
+    <meta property="og:site_name" content="YOCaml">
+    <meta property="og:url" content="https://yocaml.github.io/tutorial/simple-blog-pages.html">
+    <meta property="og:title" content="Our first pages">
+    <meta property="og:description" content="Creating the first pages: written in Markdown, converted to HTML, and injected into templates">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2025-09-05T00:00:00Z">
+    <meta property="article:modified_time" content="2025-09-05T00:00:00Z">
+    <meta property="article:section" content="Tutorial">
+    </head>
+  <body>
+    <header>
+      <div>
+        <h1>YOCaml</h1>
+      </div>
+    </header>
+    <main>
+      <div>
+        <div class="article-with-side-bar">
+  
+  <aside class="sidebar yo--navigation">
+    
+    <nav>
+      <h4>Preamble</h4>
+      
+      
+      <a href="/tutorial/index.html" title="A conceptual introduction to YOCaml">
+        Introduction
+      </a>
+      
+      
+      <a href="/tutorial/why.html" title="The promotional part of YOCaml">
+        Why use YOCaml
+      </a>
+      
+      
+      <a href="/tutorial/setup.html" title="Mise en place d&apos;un environnement de développement">
+        Installation and setup
+      </a>
+      
+      
+      <a href="/tutorial/key-concepts.html" title="Explanation of key points and concepts for building with YOCaml">
+        Key concepts
+      </a>
+      </nav>
+    
+    <nav>
+      <h4>Your first blog</h4>
+      
+      
+      <a href="/tutorial/simple-blog-goal.html" title="The goal and the introduction of the tutorial">
+        Goals &amp; Introduction
+      </a>
+      
+      
+      <a href="/tutorial/simple-blog-images.html" title="A First Action: Moving Images to the Target">
+        Moving images
+      </a>
+      
+      
+      <a href="/tutorial/simple-blog-css.html" title="A New Action: Generating CSS file">
+        Generating CSS
+      </a>
+      
+      
+      <span>Our first pages</span>
+      </nav>
+    
+    <nav>
+      <h4>Specifics</h4>
+      
+      
+      <a href="/tutorial/path.html" title="TBD">
+        Path manipulation
+      </a>
+      
+      
+      <a href="/tutorial/validation.html" title="TBD">
+        Data validation and Metadata
+      </a>
+      
+      
+      <a href="/tutorial/task.html" title="TBD">
+        Building and composing Task
+      </a>
+      </nav>
+    
+  </aside>
+  
+  <section>
+    <h1 class="main-title">Our first pages</h1>
+
+<section class="prose">
+  <p>In this tutorial, we’ll finally dive into the core of the topic by creating our very first pages!</p>
+
+</section>
+
+<article class="prose">
+<div class="hidden-toplevel">
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>install_printer</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>pp</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>install_printer</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Deps</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>pp</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>www</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>_www</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>assets</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>assets</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>with_ext</span><span class='ocaml-source'> </span><span class='ocaml-source'>exts</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>List</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>exists</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-source'> </span><span class='ocaml-source'>ext</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>has_extension</span><span class='ocaml-source'> </span><span class='ocaml-source'>ext</span><span class='ocaml-source'> </span><span class='ocaml-source'>file</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>exts</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>track_binary</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Sys</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>executable_name</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>from_string</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>track_file</span><span class='ocaml-source'>
+</span></code></pre>
+</div>
+<p>After moving files around, it’s time to start adding real <em>value</em> to
+our site by <strong>creating our first pages</strong>! This tutorial will introduce
+the basics of file reading, document processing, and template
+injection.</p>
+<p>The main idea in this section is to create pages written in
+<a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>, attach <em>metadata</em>
+to them, convert them into HTML, and inject them into cascading
+templates.</p>
+<h3 id="additional-dependencies"><a class="anchor" aria-hidden="true" href="#additional-dependencies"></a>Additional dependencies</h3>
+<p>The core of YOCaml can only describe primitive operations on the file
+system <em>in an abstract way</em>. Usually, it’s the <em>runtime</em> (in our case,
+<code>yocaml_unix</code>) that gives these primitives their <strong>concrete</strong> meaning.
+As a result, YOCaml doesn’t know how to handle Markdown, or what it
+actually means to insert a document into a template. Fortunately,
+there are YOCaml plugins that provide advanced features. For our
+purposes, we’ll need two complementary plugins:</p>
+<ul>
+<li>
+<p><a href="https://ocaml.org/p/yocaml_markdown/latest">Yocaml_markdown</a>: a
+plugin that converts Markdown documents into HTML. It is built on
+top of the excellent <a href="https://ocaml.org/p/cmarkit/latest">Cmarkit</a>
+package for document conversion and
+<a href="https://ocaml.org/p/hilite/latest">Hilite</a> for syntax highlighting
+of code snippets, using TextMate grammars.</p>
+</li>
+<li>
+<p><a href="https://ocaml.org/p/yocaml_jingoo/latest">Yocaml_jingoo</a>: a plugin
+based on <a href="https://ocaml.org/p/jingoo/latest">Jingoo</a>, a template
+engine heavily inspired by
+<a href="https://github.com/pallets/jinja/">Jinja</a> and offering a wide range
+of features.</p>
+</li>
+<li>
+<p><a href="https://ocaml.org/p/yocaml_yaml/latest">Yocaml_yaml</a>: a plugin that
+allows us to describe metadata using the <a href="https://yaml.org/">YAML</a>
+language.</p>
+</li>
+</ul>
+<p>We now need to update our <code>dune-project</code> file in the <code>package/blog</code>
+section to add the two packages:</p>
+<pre><code><span class='diff-source'> (package
+</span><span class='diff-source'>  (name blog)
+</span><span class='diff-source'>  (synopsis &quot;My first blog using YOCaml&quot;)
+</span><span class='diff-source'>  (description 
+</span><span class='diff-source'>    &quot;My first personal blog using YOCaml for 
+</span><span class='diff-source'>    fun and profit&quot;)
+</span><span class='diff-source'>  (depends
+</span><span class='diff-source'>   (ocaml (&gt;= 5.3.0))
+</span><span class='diff-source'> 
+</span><span class='diff-source'>   (yocaml (&gt;= 2.5.0))
+</span><span class='diff-source'>   (yocaml_unix (&gt;= 2.5.0))
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  (yocaml_yaml (&gt;= 2.5.0))
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  (yocaml_markdown (&gt;= 2.5.0))
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  (yocaml_jingoo (&gt;= 2.5.0))
+</span><span class='diff-source'>    
+</span><span class='diff-source'>   (utop :with-dev-setup)
+</span><span class='diff-source'>   (ocamlformat :with-dev-setup)
+</span><span class='diff-source'>   (ocp-indent :with-dev-setup)
+</span><span class='diff-source'>   (merlin :with-dev-setup)
+</span><span class='diff-source'>   (ocaml-lsp-server :with-dev-setup)))
+</span></code></pre>
+<p>In addition, to make them accessible from our blog code (<code>blog.ml</code>),
+we need to add the dependencies in our <code>bin/dune</code> file:</p>
+<pre><code><span class='diff-source'> (executable 
+</span><span class='diff-source'>   (public_name blog)
+</span><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>  (libraries yocaml yocaml_unix))
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  (libraries yocaml yocaml_unix yocaml_yaml 
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>             yocaml_markdown yocaml_jingoo))
+</span></code></pre>
+<p>Now, in our <code>blog.ml</code> executable, we will be able to use the
+<code>Yocaml_markdown</code> and <code>Yocaml_jingoo</code> libraries!</p>
+<h3 id="front-matter-and-metadata"><a class="anchor" aria-hidden="true" href="#front-matter-and-metadata"></a>Front Matter and metadata</h3>
+<p>In most cases, we want to <strong>associate metadata</strong> with a page to provide additional information — for example, the page title, its description, and related tags. YOCaml follows an approach popularized by <a href="https://jekyllrb.com/">Jekyll</a>: the <a href="https://jekyllrb.com/docs/front-matter/">front matter</a>.</p>
+<p>Front matter allows us to attach extra data to a document. It is
+written in another language and wrapped between <code>---</code> and <code>---</code>.</p>
+<pre><code><span class='markdown-punctuation-definition-begin'>---</span><span class='markdown-meta-embedded-block'>
+</span><span class='markdown-meta-embedded-block'>page_title: Here is the title of my document
+</span><span class='markdown-meta-embedded-block'>description: Here is custom page, as an example
+</span><span class='markdown-meta-embedded-block'>tags: [meta, page, tutorial]
+</span><span class='markdown-punctuation-definition-begin'>---</span><span class='markdown-meta-embedded-block'>
+</span><span class='markdown-meta-embedded-block'>
+</span><span class='markdown-meta-embedded-block'># My document markdown
+</span><span class='markdown-meta-embedded-block'>
+</span><span class='markdown-meta-embedded-block'>&gt; Hello, welcome to my **custom page**, here is 
+</span><span class='markdown-meta-embedded-block'>&gt; a Markdown document
+</span><span class='markdown-meta-embedded-block'>
+</span><span class='markdown-meta-embedded-block'>Hello World!
+</span></code></pre>
+<p>In our example, the front matter is written in YAML. However, you are
+free to use alternative formats, such as
+<a href="https://en.wikipedia.org/wiki/S-expression">S-expressions</a>,
+<a href="https://ocaml.org/p/yocaml_otoml/latest">ToML</a>, or even implement
+your own support for a custom description language.</p>
+<h4 id="typing-metadata"><a class="anchor" aria-hidden="true" href="#typing-metadata"></a>Typing metadata</h4>
+<p>OCaml is a <strong>statically typed</strong> language. Therefore, we want our site
+generator to leverage static typing to precisely validate our front
+matter according to the types of pages we intend to read.</p>
+<p>YOCaml provides a <strong>very rich</strong> API for validating structured data,
+ensuring that a document contains sufficient metadata to correctly
+build another document.</p>
+<p>In this tutorial, we will only use pre-built metadata (informally
+called <em>Archetypes</em>) to simplify the development of our
+project. However, we encourage you to visit the <a href="/tutorial/validation.html">Data
+Validation</a> section for an advanced
+tutorial on creating data models.</p>
+<h2 id="creating-our-pages"><a class="anchor" aria-hidden="true" href="#creating-our-pages"></a>Creating our pages</h2>
+<p>As with previous exercises, we will start by <strong>handling the creation
+of a single page</strong>, and then use the <code>Batch</code> API to apply our action
+to all pages.</p>
+<p>First, as always, we will define some variables to make content access
+easier.</p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>content</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>content</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>pages</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>content</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>pages</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
+<p>We can now define an action that will transform Markdown files stored
+in <code>content/pages</code> into HTML files at the root of our target. In broad
+terms, this is how the action will behave:</p>
+<ul>
+<li>It extracts the metadata from the front matter and the content of
+the document.</li>
+<li>It validates the front matter metadata against a schema (and a
+description language, here YAML, via <code>Yocaml_yaml</code>).</li>
+<li>It converts the document content from Markdown to HTML using
+<code>Yocaml_markdown</code>.</li>
+<li>It injects the metadata and content into a chain of templates (first
+into a layout dedicated to displaying a page, then into the general
+layout of our site, shared among all types of documents).</li>
+</ul>
+<p>Without further ado, here is the skeleton of our action:</p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_page</span><span class='ocaml-source'> </span><span class='ocaml-source'>source</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>page_path</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>source</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>move</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>into</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>www</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>change_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>html</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>pipeline</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-comment-block'>(*</span><span class='ocaml-comment-block'> To be completed </span><span class='ocaml-comment-block'>*)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>assert</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-boolean'>false</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Static</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>write_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>page_path</span><span class='ocaml-source'> </span><span class='ocaml-source'>pipeline</span><span class='ocaml-source'>
+</span></code></pre>
+<p>The path definition is a bit more complex than what we did in previous
+sections: we compute a path where we move our <code>source</code> to the root of
+our site (<code>_www</code>) and change its extension (from <code>.md</code> to <code>.html</code>).</p>
+<p>We can now <strong>build our pipeline</strong>.</p>
+<h3 id="reading-a-file-and-its-metadata"><a class="anchor" aria-hidden="true" href="#reading-a-file-and-its-metadata"></a>Reading a file and its metadata</h3>
+<p>YOCaml provides, once again in the <code>Pipeline</code> module, a function that
+allows us to read a document and extract its metadata:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file_with_metadata</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml__</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Required</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>DATA_PROVIDER</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml__</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Required</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>DATA_READABLE</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>with</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    ?</span><span class='ocaml-source'>extraction_strategy</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-constant-language-capital-identifier'>Yocaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Metadata</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>extraction_strategy</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    ?</span><span class='ocaml-source'>snapshot</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-support-type'>bool</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>unit</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>The function may seem intimidating, but let's break down its
+parameters one by one:</p>
+<ul>
+<li>
+<p><code>(module Required.DATA_PROVIDER)</code>: the first parameter is a module
+describing the language used for the front matter. In our example,
+we assume our language is YAML, so we can simply use <code>Yocaml_yaml</code>
+as the parameter.</p>
+</li>
+<li>
+<p><code>(module Required.DATA_READABLE)</code>: the second parameter is also a
+module, which describes how to validate the front matter data. (It's
+important to note that validation is independent of the language
+used; YOCaml uses an intermediate representation that allows a
+<code>DATA_READABLE</code> module to work with any <code>DATA_PROVIDER</code>). In our
+example, we will use the module
+<a href="https://yocaml.github.io/doc/yocaml/yocaml/Yocaml/Archetype/Page/index.html">Archetype.Page</a>,
+which describes a very basic page.</p>
+</li>
+<li>
+<p><code>?extraction_strategy</code>: describes how to extract the front
+matter. In our case, there’s no need to change it; we will use the
+default, which encloses the front matter between <code>---</code>.</p>
+</li>
+<li>
+<p><code>?snapshot</code>: a flag. If set to <code>true</code>, the file content will be
+stored in a specific cache to be read only once. By default, this
+flag is <code>false</code> (and set to <code>true</code> when reading a template). In
+general, there’s no need to worry about it; YOCaml functions choose
+a sensible default.</p>
+</li>
+<li>
+<p><code>Path.t</code>: the path to the file we want to read.</p>
+</li>
+</ul>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file_with_metadata</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_yaml</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Archetype</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Page</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>content</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>pages</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>an_article.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>unit</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Archetype</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Page</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-source'>abstr</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>It is worth noting that the <code>Yocaml_yaml</code> module provides a function
+<a href="https://yocaml.github.io/doc/yocaml_yaml/yocaml_yaml/Yocaml_yaml/Pipeline/index.html#val-read_file_with_metadata"><code>Pipeline.read_file_with_metadata</code></a>,
+which makes passing the first module unnecessary.</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_yaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file_with_metadata</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Archetype</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Page</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>rel</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>content</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>pages</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>an_article.md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>unit</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Archetype</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Page</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-source'>abstr</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>We can start writing our pipeline like this:</p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_page</span><span class='ocaml-source'> </span><span class='ocaml-source'>source</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>page_path</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>source</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>move</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>into</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>www</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>change_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>html</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>pipeline</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let+</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>track_binary</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>and+</span><span class='ocaml-source'> </span><span class='ocaml-source'>_metadata</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>content</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_yaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file_with_metadata</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>        </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Archetype</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Page</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>        </span><span class='ocaml-source'>source</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>content</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Static</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>write_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>page_path</span><span class='ocaml-source'> </span><span class='ocaml-source'>pipeline</span><span class='ocaml-source'>
+</span></code></pre>
+<p>As with creating the CSS file, we <em>track</em> the binary first, then
+extract the metadata and the content of the file. If we inspect
+<code>_metadata</code> (we prefixed it with <code>_</code> because we are not using it yet),
+the variable will have the type <code>Archetype.Page.t</code>. If we inspect
+<code>content</code>, the variable will have the type <code>string</code>.</p>
+<h4 id="batching-our-actions"><a class="anchor" aria-hidden="true" href="#batching-our-actions"></a>Batching our actions</h4>
+<p>Even though we could delegate this task to the end of our process when
+a page is fully built, we think it’s useful to quickly see what’s
+happening by running our generator as fast as possible.</p>
+<p>Unsurprisingly, batching is trivial to implement. For convenience, we
+can even reuse our <code>with_ext</code> function to support the different
+extensions possible for Markdown:</p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_pages</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>where</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>with_ext</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>md</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>markdown</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>mdown</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Batch</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>iter_files</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>where</span><span class='ocaml-source'> </span><span class='ocaml-source'>pages</span><span class='ocaml-source'> </span><span class='ocaml-source'>create_page</span><span class='ocaml-source'>
+</span></code></pre>
+<p>We can now, as usual, modify our main program to execute our
+<code>create_pages</code> action:</p>
+<pre><code><span class='diff-source'> let program () =
+</span><span class='diff-source'>   let open Eff in
+</span><span class='diff-source'>   let cache = Path.(www / &quot;.cache&quot;) in
+</span><span class='diff-source'>   Action.restore_cache cache
+</span><span class='diff-source'>   &gt;&gt;= copy_image
+</span><span class='diff-source'>   &gt;&gt;= create_css
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  &gt;&gt;= create_pages
+</span><span class='diff-source'>   &gt;&gt;= Action.store_cache cache
+</span></code></pre>
+<p>If we run the generator as-is, assuming there is a Markdown page in
+<code>content/pages</code>, our program should simply copy it to <code>_www</code>, removing
+the front matter (since we are not doing anything with the metadata).</p>
+<p>For example, if we create a file in <code>content/pages</code> named
+<code>a_first_article.md</code> and fill it as follows:</p>
+<pre><code><span class='markdown-text-html'># Hello World
+</span><span class='markdown-text-html'>
+</span><span class='markdown-punctuation-definition-quote-begin'>&gt;</span><span class='markdown-markup-quote'> </span><span class='markdown-markup-quote'>Here is a my **first custom page**!
+</span></code></pre>
+<p>Running <code>dune exec bin/blog.exe</code> should correctly copy the file, in
+HTML, to the root of our target!</p>
+<blockquote>
+<p>You might be surprised that the generation works fine even though
+the page has no front matter. This is because the <code>Page</code> archetype
+is particularly lenient. It assumes that all required fields are
+optional.</p>
+</blockquote>
+<h4 id="the-front-matter-of-a-page"><a class="anchor" aria-hidden="true" href="#the-front-matter-of-a-page"></a>The front matter of a page</h4>
+<p>As we have seen, the page model is very lenient and only requires a
+series of optional parameters:</p>
+<pre><code>page_title: string option
+description: string option
+tags: list option
+display_toc: bool option
+</code></pre>
+<p>The <code>display_toc</code> field indicates whether to display a table of
+contents (but for now, we won’t worry about this field, as it requires
+additional work on the pipeline side).</p>
+<p>These data can be useful for many purposes, but in our context, we
+will use them in our templates. Going forward, you are encouraged to
+create several pages, filling in (or not) their front matter.</p>
+<h3 id="converting-markdown-to-html"><a class="anchor" aria-hidden="true" href="#converting-markdown-to-html"></a>Converting Markdown to HTML</h3>
+<p>Through <a href="https://ocaml.org/p/cmarkit/latest">Cmarkit</a>, the
+<code>Yocaml_markdown</code> module provides several functions to convert (and
+analyze) Markdown documents. For simplicity, we will use the very
+straightforward function: <code>Yocaml_markdown.from_string_to_html</code>.</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_markdown</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>from_string_to_html</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> ?</span><span class='ocaml-source'>strict</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-support-type'>bool</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    ?</span><span class='ocaml-source'>heading_auto_ids</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-support-type'>bool</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    ?</span><span class='ocaml-source'>highlight</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Cmarkit</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Doc</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Cmarkit</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Doc</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    ?</span><span class='ocaml-source'>safe</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-support-type'>bool</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>As often with YOCaml, its functions handle many things for the sake of
+flexibility. Here, we won’t worry about the optional parameters and
+will simply use the function:</p>
+<pre><code><span class='diff-source'>let create_page source =
+</span><span class='diff-source'>  let page_path =
+</span><span class='diff-source'>    source 
+</span><span class='diff-source'>    |&gt; Path.move ~into:www 
+</span><span class='diff-source'>    |&gt; Path.change_extension &quot;html&quot;
+</span><span class='diff-source'>  in
+</span><span class='diff-source'>  let pipeline =
+</span><span class='diff-source'>    let open Task in
+</span><span class='diff-source'>    let+ () = track_binary
+</span><span class='diff-source'>    and+ _metadata, content =
+</span><span class='diff-source'>      Yocaml_yaml.Pipeline.read_file_with_metadata
+</span><span class='diff-source'>        (module Archetype.Page)
+</span><span class='diff-source'>        source
+</span><span class='diff-source'>    in
+</span><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>    content
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>    content 
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>    |&gt; Yocaml_markdown.from_string_to_html
+</span><span class='diff-source'>  in
+</span><span class='diff-source'>  Action.Static.write_file page_path pipeline
+</span></code></pre>
+<p>By testing our generator (<code>dune exec bin/blog.exe</code>), we can now see
+that our page has been successfully converted to HTML — a very good
+sign!</p>
+<h2 id="injecting-into-templates"><a class="anchor" aria-hidden="true" href="#injecting-into-templates"></a>Injecting into templates</h2>
+<p>Now that we have real HTML pages, it’s time to give them the look of a
+proper website.  For this, we will use
+<a href="https://ocaml.org/p/jingoo/latest">Jingoo</a> to define templates where
+we can use variables provided, among other things, by the front matter
+of our documents.</p>
+<h3 id="chaining-templates"><a class="anchor" aria-hidden="true" href="#chaining-templates"></a>Chaining templates</h3>
+<p>YOCaml does not support <em>partials</em> (or <em>includes</em>) due to inherent
+reasons in its model. To use multiple template files, YOCaml allows
+them to be applied successively, which is called a <em>template cascade</em>.</p>
+<p>In our example, we will have two templates:</p>
+<ul>
+<li><code>layout.html</code>, which defines the general structure of the site and
+will be common to all generated documents (articles and pages).</li>
+<li><code>page.html</code>, which specifically structures a page.</li>
+</ul>
+<p>With each application, we add a variable, usable in a template as
+<code>yocaml_body</code>, representing the <em>content</em> of the document being
+injected.</p>
+<h3 id="creating-templates"><a class="anchor" aria-hidden="true" href="#creating-templates"></a>Creating templates</h3>
+<p>Our templates will go into the <code>assets/templates</code> directory and are
+regular HTML files. To start, we will create a very simple layout
+template. You can download the files
+<a href="/assets/materials/layout.html">layout.html</a> and
+<a href="/assets/materials/page.html">page.html</a> and save them in
+<code>assets/templates</code>.</p>
+<p>To learn more about Jingoo, we recommend visiting the <a href="https://tategakibunko.github.io/jingoo/">official
+site</a> (you can also use the
+<a href="https://sagotch.github.io/try-jingoo/">playground</a>) to explore all
+the features provided by the engine. All features are supported in
+YOCaml, except for <em>partials/includes</em>.</p>
+<h3 id="using-templates"><a class="anchor" aria-hidden="true" href="#using-templates"></a>Using templates</h3>
+<p>Now that we have our templates, we can use them in our pipelines!
+YOCaml offers several approaches for injecting templates, but we will
+focus on the simplest one:</p>
+<pre><code><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_templates</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml__</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Required</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>DATA_TEMPLATE</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    ?</span><span class='ocaml-source'>snapshot</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-support-type'>bool</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    ?</span><span class='ocaml-source'>strict</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-support-type'>bool</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>unit</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>     </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml__</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Required</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>DATA_INJECTABLE</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>with</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>     </span><span class='ocaml-source'>metadata</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>t</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>Once again, the function may seem <strong>very intimidating</strong>, but we will
+see that it is actually quite easy to use!</p>
+<ul>
+<li><code>(module Required.DATA_TEMPLATE)</code> is a module that describes how the
+template engine works. Here, we can simply pass <code>Yocaml_jingoo</code> (or
+just use <code>Yocaml_jingoo.read_template</code>, which, like <code>Yocaml_yaml</code>,
+provides a shortcut).</li>
+<li><code>?snapshot</code> and <code>strict</code> are default parameters that we don’t need
+to worry about for now.</li>
+<li><code>Path.t list</code> is the list of templates we want to apply, in order.</li>
+</ul>
+<p>The subtlety of this task is that it is of type <code>(unit, _) Task.t</code>, so
+we can perfectly use it with applicative notation, and it returns a
+function <strong>that will sequentially apply the templates</strong>. The function
+can also seem intimidating:</p>
+<ul>
+<li><code>(module Required.DATA_INJECTABLE)</code> describes how to inject metadata
+into a template. Previously, we used <code>Archetype.Page</code> as
+<code>DATA_READABLE</code>. It turns out it is also injectable, so we can
+simply use this module.</li>
+<li><code>metadata</code> is the metadata we want to inject, which must have the
+type described by the <code>DATA_INJECTABLE</code> module.</li>
+<li><code>string</code> is the content we want to pass from template to template.</li>
+</ul>
+<p>We can very easily modify our pipeline to add template support. First,
+we will create a <code>templates</code> variable, as usual:</p>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>templates</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>assets</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>templates</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
+<p>Next, we simply retrieve our <em>application function</em>:</p>
+<pre><code><span class='diff-source'>let create_page source =
+</span><span class='diff-source'>  let page_path =
+</span><span class='diff-source'>    source 
+</span><span class='diff-source'>    |&gt; Path.move ~into:www 
+</span><span class='diff-source'>    |&gt; Path.change_extension &quot;html&quot;
+</span><span class='diff-source'>  in
+</span><span class='diff-source'>  let pipeline =
+</span><span class='diff-source'>    let open Task in
+</span><span class='diff-source'>    let+ () = track_binary
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>   and+ apply_templates = 
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>      Yocaml_jingoo.read_templates 
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>        Path.[ templates / &quot;page.html&quot;
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>             ; templates / &quot;layout.html&quot; ]
+</span><span class='diff-source'>    and+ _metadata, content =
+</span><span class='diff-source'>      Yocaml_yaml.Pipeline.read_file_with_metadata
+</span><span class='diff-source'>        (module Archetype.Page)
+</span><span class='diff-source'>        source
+</span><span class='diff-source'>    in
+</span><span class='diff-source'>    content 
+</span><span class='diff-source'>    |&gt; Yocaml_markdown.from_string_to_html
+</span><span class='diff-source'>  in
+</span><span class='diff-source'>  Action.Static.write_file page_path pipeline
+</span></code></pre>
+<p>Once that is done, we can simply use the function after converting
+Markdown to HTML:</p>
+<pre><code><span class='diff-source'>let create_page source =
+</span><span class='diff-source'>  let page_path =
+</span><span class='diff-source'>    source 
+</span><span class='diff-source'>    |&gt; Path.move ~into:www 
+</span><span class='diff-source'>    |&gt; Path.change_extension &quot;html&quot;
+</span><span class='diff-source'>  in
+</span><span class='diff-source'>  let pipeline =
+</span><span class='diff-source'>    let open Task in
+</span><span class='diff-source'>    let+ () = track_binary
+</span><span class='diff-source'>    and+ apply_templates = 
+</span><span class='diff-source'>       Yocaml_jingoo.read_templates 
+</span><span class='diff-source'>         Path.[ templates / &quot;page.html&quot;
+</span><span class='diff-source'>              ; templates / &quot;layout.html&quot; ]
+</span><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>   and+ _metadata, content =
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>   and+ metadata, content =
+</span><span class='diff-source'>      Yocaml_yaml.Pipeline.read_file_with_metadata
+</span><span class='diff-source'>        (module Archetype.Page)
+</span><span class='diff-source'>        source
+</span><span class='diff-source'>    in
+</span><span class='diff-source'>    content 
+</span><span class='diff-source'>    |&gt; Yocaml_markdown.from_string_to_html
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>   |&gt; apply_templates (module Archetype.Page) ~metadata
+</span><span class='diff-source'>  in
+</span><span class='diff-source'>  Action.Static.write_file page_path pipeline
+</span></code></pre>
+<div class="hidden-toplevel">
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_page</span><span class='ocaml-source'> </span><span class='ocaml-source'>source</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>page_path</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>source</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>move</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>into</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>www</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>change_extension</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>html</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>pipeline</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Task</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let+</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>track_binary</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>and</span><span class='ocaml-keyword'>+</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>apply_templates</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>      </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_jingoo</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_templates</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>        </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-source'>templates</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>page.html</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>             </span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-source'>templates</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>layout.html</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>and+</span><span class='ocaml-source'> </span><span class='ocaml-source'>metadata</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>content</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_yaml</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Pipeline</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_file_with_metadata</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>        </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Archetype</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Page</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>        </span><span class='ocaml-source'>source</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-source'>content</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_markdown</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>from_string_to_html</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-operator'>|&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>apply_templates</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Archetype</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Page</span><span class='ocaml-source'>)</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>metadata</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>Static</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>write_file</span><span class='ocaml-source'> </span><span class='ocaml-source'>page_path</span><span class='ocaml-source'> </span><span class='ocaml-source'>pipeline</span><span class='ocaml-source'>
+</span></code></pre>
+</div>
+<p>And there we have it! As we can see, we started our pipeline by
+provisioning all the data we need <em>in parallel</em>, and then we simply
+build the string we want to write to our file!</p>
+<h2 id="conclusion"><a class="anchor" aria-hidden="true" href="#conclusion"></a>Conclusion</h2>
+<p>We have seen how to create complex tasks and are now able to transform
+Markdown pages into HTML pages injected into templates. In short, we
+can build a real website!</p>
+<p>If you take the time to read the templates we used, you’ll notice that
+<code>yocaml_body</code> is used extensively — it represents the content of the
+file being injected. The <em>normalization</em> process (turning a model into
+data injectable into the template) of the <code>Archetype.Page</code> adds
+helpful variables such as <code>has_page_title</code>, <code>has_description</code>, and so
+on.</p>
+<p>This was one of the densest parts of this tutorial because it tackled
+some of the most challenging concepts!</p>
+
+</article>
+
+    
+    <div class="prev-next">
+      
+      <a href="/tutorial/simple-blog-css.html"
+         title="A New Action: Generating CSS file"
+         class="previous">
+        <h4>Previous</h4>
+        <span class="section-title">Your first blog</span>
+        <span>Generating CSS</span>
+      </a>
+      
+      
+      <a href="/tutorial/path.html"
+         title="TBD"
+         class="next">
+        <h4>Next</h4>
+        <span class="section-title">Specifics</span>
+        <span>Path manipulation</span>
+      </a>
+      
+    </div>
+    
+  </section>
+  
+  <aside class="toc yo--navigation">
+    <nav id="active-toc">
+      <h4>Table of content</h4>
+      <ul><li><a href="#additional-dependencies" data-toc-target="additional-dependencies">Additional dependencies</a></li><li><a href="#front-matter-and-metadata" data-toc-target="front-matter-and-metadata">Front Matter and metadata</a><ul><li><a href="#typing-metadata" data-toc-target="typing-metadata">Typing metadata</a></li></ul></li><li><a href="#creating-our-pages" data-toc-target="creating-our-pages">Creating our pages</a><ul><li><a href="#reading-a-file-and-its-metadata" data-toc-target="reading-a-file-and-its-metadata">Reading a file and its metadata</a><ul><li><a href="#batching-our-actions" data-toc-target="batching-our-actions">Batching our actions</a></li><li><a href="#the-front-matter-of-a-page" data-toc-target="the-front-matter-of-a-page">The front matter of a page</a></li></ul></li><li><a href="#converting-markdown-to-html" data-toc-target="converting-markdown-to-html">Converting Markdown to HTML</a></li></ul></li><li><a href="#injecting-into-templates" data-toc-target="injecting-into-templates">Injecting into templates</a><ul><li><a href="#chaining-templates" data-toc-target="chaining-templates">Chaining templates</a></li><li><a href="#creating-templates" data-toc-target="creating-templates">Creating templates</a></li><li><a href="#using-templates" data-toc-target="using-templates">Using templates</a></li></ul></li><li><a href="#conclusion" data-toc-target="conclusion">Conclusion</a></li></ul>
+    </nav>
+  </aside>
+  
+</div>
+
+
+      </div>
+    </main>
+    <footer>
+      <div>
+        <div class="yo--grid-col-autofill yo--navigation modules">
+          <nav>
+            <h4>Navigation</h4>
+            <a href="/">Home</a>
+            <a href="/tutorial">Tutorial</a>
+            <a href="https://github.com/xhtmlboi/yocaml">
+              YOCaml repository
+            </a>
+            <a href="https://github.com/yocaml/yocaml-www">
+              Site repository
+            </a>
+            <a href="https://yocaml.github.io/doc">API Doc</a>
+          </nav>
+          <nav>
+            <h4>Bug Trackers</h4>
+            <a href="https://github.com/xhtmlboi/yocaml/issues">
+              YOCaml
+            </a>
+            <a href="https://github.com/yocaml/yocaml-www/issues">
+              Site
+            </a>
+            
+            <a href="https://github.com/yocaml/yocaml-www/blob/main/content/tutorial/simple-blog-pages.md">
+              Page source
+            </a>
+            
+          </nav>
+        </div>
+      </div>
+      <div class="bottom-line">
+        <div>
+          <a href="https://ocaml.org" title="OCaml website">
+            <svg role="img" class="yo--icon">
+              <use href="/assets/images/icons.svg#ocaml" />
+            </svg>
+          </a>  
+        </div>
+        <div class="yo--flex-full">
+          Proudly generated by
+          <a href="https://github.com/xhtmlboi/yocaml">
+            YOCaml
+          </a>
+        </div>
+        <div class="yo--flex-full yo--text-right">
+          Generator under
+          <a href="https://gnu.org/licenses/gpl-3.0.html">
+            GPL 3.0
+          </a>
+          <br/>
+          Content under
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            CC BY-SA
+          </a>
+        </div>
+        <div>
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <svg role="img" class="yo--icon">
+              <use href="/assets/images/icons.svg#cc" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/frontend.bc.js"></script>
+  </body>
+</html>
