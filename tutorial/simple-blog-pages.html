@@ -112,6 +112,13 @@
          class="">
         Article indexation
       </a>
+      
+      
+      <a href="/tutorial/simple-blog-feed.html"
+         title="Creating an ATOM syndication feed"
+         class="">
+        Creating a syndication feed
+      </a>
       </nav>
     
     <nav>
@@ -236,6 +243,9 @@ we need to add the dependencies in our <code>bin/dune</code> file:</p>
 </span></code></pre>
 <p>Now, in our <code>blog.ml</code> executable, we will be able to use the
 <code>Yocaml_markdown</code> and <code>Yocaml_jingoo</code> libraries!</p>
+<p>Do not forget to run <code>dune build</code> to regenerate the OPAM file and then
+run <code>opam install . --deps-only</code> to download the newly added
+dependencies.</p>
 <h3 id="front-matter-and-metadata"><a class="anchor" aria-hidden="true" href="#front-matter-and-metadata"></a>Front Matter and metadata</h3>
 <p>In most cases, we want to <strong>associate metadata</strong> with a page to provide additional information — for example, the page title, its description, and related tags. YOCaml follows an approach popularized by <a href="https://jekyllrb.com/">Jekyll</a>: the <a href="https://jekyllrb.com/docs/front-matter/">front matter</a>.</p>
 <p>Front matter allows us to attach extra data to a document. It is

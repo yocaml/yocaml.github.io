@@ -112,6 +112,13 @@
       <span class="">
         Article indexation
       </span>
+      
+      
+      <a href="/tutorial/simple-blog-feed.html"
+         title="Creating an ATOM syndication feed"
+         class="">
+        Creating a syndication feed
+      </a>
       </nav>
     
     <nav>
@@ -332,7 +339,14 @@ will be <code>/articles/an-article.html</code>.</p>
 <h3 id="collecting-articles"><a class="anchor" aria-hidden="true" href="#collecting-articles"></a>Collecting Articles</h3>
 <p>Now that we know how to calculate a link, we can finally extend our
 pipeline to collect all of our articles:</p>
-<pre><code><span class='diff-source'> let create_index =
+<pre><code><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'> let fetch_articles = 
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>   Archetype.Articles.fetch 
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>     ~where:is_markdown 
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>     ~compute_link
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>     (module Yocaml_yaml)
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>     articles
+</span><span class='diff-source'>
+</span><span class='diff-source'> let create_index =
 </span><span class='diff-source'>   let source = Path.(content / &quot;index.md&quot;) in
 </span><span class='diff-source'>   let index_path =
 </span><span class='diff-source'>     source 
@@ -348,12 +362,7 @@ pipeline to collect all of our articles:</p>
 </span><span class='diff-source'>           [ templates / &quot;page.html&quot;
 </span><span class='diff-source'>           ; templates / &quot;layout.html&quot;
 </span><span class='diff-source'>           ]
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>    and+ articles = 
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>      Archetype.Articles.fetch 
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>        ~where:is_markdown 
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>        ~compute_link
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>        (module Yocaml_yaml)
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>        articles
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>    and+ articles = fetch_articles
 </span><span class='diff-source'>     and+ metadata, content =
 </span><span class='diff-source'>       Yocaml_yaml.Pipeline.read_file_with_metadata
 </span><span class='diff-source'>         (module Archetype.Page)
@@ -400,12 +409,7 @@ variable:</p>
 </span><span class='diff-source'>           [ templates / &quot;page.html&quot;
 </span><span class='diff-source'>           ; templates / &quot;layout.html&quot;
 </span><span class='diff-source'>           ]
-</span><span class='diff-source'>     and+ articles = 
-</span><span class='diff-source'>       Archetype.Articles.fetch 
-</span><span class='diff-source'>         ~where:is_markdown 
-</span><span class='diff-source'>         ~compute_link
-</span><span class='diff-source'>         (module Yocaml_yaml)
-</span><span class='diff-source'>         articles
+</span><span class='diff-source'>     and+ articles = fetch_articles
 </span><span class='diff-source'>     and+ metadata, content =
 </span><span class='diff-source'>       Yocaml_yaml.Pipeline.read_file_with_metadata
 </span><span class='diff-source'>         (module Archetype.Page)
@@ -468,12 +472,12 @@ that the template works seamlessly!</p>
       </a>
       
       
-      <a href="/tutorial/path.html"
-         title="TBD"
+      <a href="/tutorial/simple-blog-feed.html"
+         title="Creating an ATOM syndication feed"
          class="next">
         <h4>Next</h4>
-        <span class="section-title">Specifics</span>
-        <span>Path manipulation</span>
+        <span class="section-title">Your first blog</span>
+        <span>Creating a syndication feed</span>
       </a>
       
     </div>
