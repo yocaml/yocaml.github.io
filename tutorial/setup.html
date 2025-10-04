@@ -252,7 +252,6 @@ file:</p>
 </span><span class='dune-meta-stanza-library-field'>(</span><span class='dune-keyword-other'>name</span><span class='dune-meta-stanza-library-field'> </span><span class='dune-meta-atom'>blog</span><span class='dune-meta-stanza-library-field'>)</span><span class='dune-source'>
 </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>version</span><span class='dune-meta-list'> </span><span class='dune-meta-atom'>dev</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-source'>
 </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>generate_opam_files</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-source'>
-</span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>executables_implicit_empty_intf</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-source'>
 </span><span class='dune-source'>
 </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>source</span><span class='dune-meta-list'> </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>github</span><span class='dune-meta-list'> </span><span class='dune-meta-atom'>username/blog</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-source'>
 </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>license</span><span class='dune-meta-list'> </span><span class='dune-meta-atom'>MIT</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-source'>
@@ -262,29 +261,19 @@ file:</p>
 </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>package</span><span class='dune-meta-list'>
 </span><span class='dune-meta-list'> </span><span class='dune-meta-stanza-library-field'>(</span><span class='dune-keyword-other'>name</span><span class='dune-meta-stanza-library-field'> </span><span class='dune-meta-atom'>blog</span><span class='dune-meta-stanza-library-field'>)</span><span class='dune-meta-list'>
 </span><span class='dune-meta-list'> </span><span class='dune-meta-stanza-library-field'>(</span><span class='dune-keyword-other'>synopsis</span><span class='dune-meta-stanza-library-field'> </span><span class='dune-punctuation-definition-string-begin'>&quot;</span><span class='dune-string-quoted-double'>My first blog using YOCaml</span><span class='dune-punctuation-definition-string-end'>&quot;</span><span class='dune-meta-stanza-library-field'>)</span><span class='dune-meta-list'>
-</span><span class='dune-meta-list'> </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>description</span><span class='dune-meta-list'> 
-</span><span class='dune-meta-list'>   </span><span class='dune-punctuation-definition-string-begin'>&quot;</span><span class='dune-string-quoted-double'>My first personal blog using YOCaml for 
+</span><span class='dune-meta-list'> </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>description</span><span class='dune-meta-list'>
+</span><span class='dune-meta-list'>   </span><span class='dune-punctuation-definition-string-begin'>&quot;</span><span class='dune-string-quoted-double'>My first personal blog using YOCaml for
 </span><span class='dune-string-quoted-double'>   fun and profit</span><span class='dune-punctuation-definition-string-end'>&quot;</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-meta-list'>
 </span><span class='dune-meta-list'> </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>depends</span><span class='dune-meta-list'>
 </span><span class='dune-meta-list'>  </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-atom'>ocaml</span><span class='dune-meta-list'> </span><span class='dune-entity-tag-list-parenthesis'>(</span><span class='dune-meta-list'>&gt;= </span><span class='dune-constant-numeric'>5</span><span class='dune-meta-atom'>.3.0</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-entity-tag-list-parenthesis'>)</span><span class='dune-source'>
 </span></code></pre>
 <p>The first part of the file outlines how Dune will handle the project —
-essentially configuring the entire project. The two fields that can be
-a bit confusing are:</p>
-<ul>
-<li>
-<p><code>(generate_opam_files)</code>: This instructs Dune to create the OPAM
-description files. Dune is just the <em>build system</em>, and OPAM is the
-package manager. This field tells Dune to regenerate the OPAM files,
-centralizing the project configuration in our <code>dune-project</code>.</p>
-</li>
-<li>
-<p><code>(executables_implicit_empty_intf)</code>: This automatically creates an
-empty interface file for executables, allowing the compiler to
-<em>track</em> unused definitions. In practice, this is recommended, but
-optional.</p>
-</li>
-</ul>
+essentially configuring the entire project. The field that can be a
+bit confusing is <code>(generate_opam_files)</code>: this instructs Dune to
+create the OPAM description files. Dune is just the <em>build system</em>,
+and OPAM is the package manager. This field tells Dune to regenerate
+the OPAM files, centralizing the project configuration in our
+<code>dune-project</code>.</p>
 <p>The second part of the file specifies additional metadata. The
 <em>repository</em> (here we used <a href="https://github.com">GitHub</a> as the host)
 allows generating additional fields (like a link to the <em>bug
