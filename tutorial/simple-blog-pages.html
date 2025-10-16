@@ -238,6 +238,8 @@ section to add the two packages:</p>
 </span><span class='diff-source'> 
 </span><span class='diff-source'>   (yocaml (&gt;= 2.5.0))
 </span><span class='diff-source'>   (yocaml_unix (&gt;= 2.5.0))
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  cmarkit
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  hilite
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  (yocaml_yaml (&gt;= 2.5.0))
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  (yocaml_markdown (&gt;= 2.5.0))
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  (yocaml_jingoo (&gt;= 2.5.0))
@@ -248,6 +250,10 @@ section to add the two packages:</p>
 </span><span class='diff-source'>   (merlin :with-dev-setup)
 </span><span class='diff-source'>   (ocaml-lsp-server :with-dev-setup)))
 </span></code></pre>
+<blockquote>
+<p>Adding <code>cmarkit</code> and <code>hilite</code> is due to a packaging subtelty (not on
+YOCaml side) and should be fixed soon as possible</p>
+</blockquote>
 <p>In addition, to make them accessible from our blog code (<code>blog.ml</code>),
 we need to add the dependencies in our <code>bin/dune</code> file:</p>
 <pre><code><span class='diff-source'> (executable 
