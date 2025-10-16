@@ -274,7 +274,8 @@ more images to <code>assets/images</code> to verify that everything works):</p>
 </span><span class='diff-source'>   let open Eff in
 </span><span class='diff-source'>   let cache = Path.(www / &quot;.cache&quot;) in
 </span><span class='diff-source'>   Action.restore_cache cache
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  &gt;&gt;= copy_image
+</span><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>  &gt;&gt;= copy_image
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  &gt;&gt;= copy_images
 </span><span class='diff-source'>   &gt;&gt;= Action.store_cache cache
 </span></code></pre>
 <p>We have designed our first action, which simply moves files from a

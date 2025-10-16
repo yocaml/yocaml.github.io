@@ -443,7 +443,7 @@ extensions possible for Markdown:</p>
 </span><span class='diff-source'>   let open Eff in
 </span><span class='diff-source'>   let cache = Path.(www / &quot;.cache&quot;) in
 </span><span class='diff-source'>   Action.restore_cache cache
-</span><span class='diff-source'>   &gt;&gt;= copy_image
+</span><span class='diff-source'>   &gt;&gt;= copy_images
 </span><span class='diff-source'>   &gt;&gt;= create_css
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  &gt;&gt;= create_pages
 </span><span class='diff-source'>   &gt;&gt;= Action.store_cache cache
@@ -510,8 +510,7 @@ will simply use the function:</p>
 </span><span class='diff-source'>        (module Archetype.Page)
 </span><span class='diff-source'>        source
 </span><span class='diff-source'>    in
-</span><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>    content
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>    content 
+</span><span class='diff-source'>     content
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>    |&gt; Yocaml_markdown.from_string_to_html
 </span><span class='diff-source'>  in
 </span><span class='diff-source'>  Action.Static.write_file page_path pipeline

@@ -284,7 +284,7 @@ and pipelines we’ve explored earlier:</p>
 </span><span class='diff-source'>   let open Eff in
 </span><span class='diff-source'>   let cache = Path.(www / &quot;.cache&quot;) in
 </span><span class='diff-source'>   Action.restore_cache cache
-</span><span class='diff-source'>   &gt;&gt;= copy_image
+</span><span class='diff-source'>   &gt;&gt;= copy_images
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  &gt;&gt;= create_css
 </span><span class='diff-source'>   &gt;&gt;= Action.store_cache cache
 </span></code></pre>

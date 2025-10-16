@@ -428,7 +428,7 @@ can now add <code>create_feed</code> to our main program:</p>
 </span><span class='diff-source'>   let open Eff in
 </span><span class='diff-source'>   let cache = Path.(www / &quot;.cache&quot;) in
 </span><span class='diff-source'>   Action.restore_cache cache
-</span><span class='diff-source'>   &gt;&gt;= copy_image
+</span><span class='diff-source'>   &gt;&gt;= copy_images
 </span><span class='diff-source'>   &gt;&gt;= create_css
 </span><span class='diff-source'>   &gt;&gt;= create_pages
 </span><span class='diff-source'>   &gt;&gt;= create_articles
