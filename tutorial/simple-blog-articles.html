@@ -143,7 +143,21 @@
         <a href="/tutorial/metadata-projection.html"
            title="Understanding how to create data"
            class="">
-          Data projection
+          From value to data
+        </a>
+        
+        
+        <a href="/tutorial/metadata-validation.html"
+           title="Understanding how to validate data"
+           class="">
+          From data to values
+        </a>
+        
+        
+        <a href="/tutorial/metadata-validation-2.html"
+           title="TBD"
+           class="to-be-done">
+          Fine-grained validators
         </a>
         </nav>
       
@@ -374,12 +388,12 @@ whether a file has a Markdown extension or not:</p>
 </span><span class='diff-source'>
 </span><span class='diff-source'> let create_pages =
 </span><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>  let where = with_ext [ &quot;md&quot;; &quot;markdown&quot;; &quot;mdown&quot; ] in
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  let wherre = is_markdown
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  let where = is_markdown
 </span><span class='diff-source'>   Batch.iter_files ~where pages create_page
 </span><span class='diff-source'>
 </span><span class='diff-source'> let create_articles =
 </span><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>  let where = with_ext [ &quot;md&quot;; &quot;markdown&quot;; &quot;mdown&quot; ] in
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  let wherre = is_markdown
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  let where = is_markdown
 </span><span class='diff-source'>   Batch.iter_files ~where articles create_article
 </span></code></pre>
 <p>Next, we could consider <em>sharing</em> the action that actually creates the

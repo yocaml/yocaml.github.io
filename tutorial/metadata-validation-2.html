@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="en-US">
   <head>
-    <title>YOCaml - Final words</title>
-    <link rel="canonical" href="https://yocaml.github.io/tutorial/simple-blog-final.html" />
+    <title>YOCaml - Fine-grained validators</title>
+    <link rel="canonical" href="https://yocaml.github.io/tutorial/metadata-validation-2.html" />
     <link rel="stylesheet" href="/assets/css/yocaml.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content="YOCaml">
-    <meta name="description" content="Conclusion on the entire tutorial">
-    <meta name="creator" content="grm">
+    <meta name="description" content="TBD">
+    <meta name="creator" content="xvw">
     <meta property="og:site_name" content="YOCaml">
-    <meta property="og:url" content="https://yocaml.github.io/tutorial/simple-blog-final.html">
-    <meta property="og:title" content="Final words">
-    <meta property="og:description" content="Conclusion on the entire tutorial">
+    <meta property="og:url" content="https://yocaml.github.io/tutorial/metadata-validation-2.html">
+    <meta property="og:title" content="Fine-grained validators">
+    <meta property="og:description" content="TBD">
     <meta property="og:type" content="article">
-    <meta property="article:published_time" content="2025-09-10T00:00:00Z">
-    <meta property="article:modified_time" content="2025-09-10T00:00:00Z">
+    <meta property="article:published_time" content="2025-12-25T00:00:00Z">
+    <meta property="article:modified_time" content="2025-12-25T00:00:00Z">
     <meta property="article:section" content="Tutorial">
     </head>
   <body>
@@ -123,9 +123,11 @@
         </a>
         
         
-        <span class="">
+        <a href="/tutorial/simple-blog-final.html"
+           title="Conclusion on the entire tutorial"
+           class="">
           Final words
-        </span>
+        </a>
         </nav>
       
       <nav>
@@ -153,11 +155,9 @@
         </a>
         
         
-        <a href="/tutorial/metadata-validation-2.html"
-           title="TBD"
-           class="to-be-done">
+        <span class="to-be-done">
           Fine-grained validators
-        </a>
+        </span>
         </nav>
       
       <nav>
@@ -189,11 +189,11 @@
     
     <section>
       <section class="tutorial-header">
-  <h1 class="main-title">Final words</h1>
+  <h1 class="main-title">Fine-grained validators</h1>
   <section class="tutorial-info">
     <strong>Published on the</strong>
-    <time datetime="2025-09-10 00:00:00">
-      2025-09-10
+    <time datetime="2025-12-25 00:00:00">
+      2025-12-25
     </time>
     
   </section>
@@ -202,11 +202,11 @@
     <nav>
       <strong>Written by</strong>
       
-      <a href="/#"
-         title="home"
+      <a href="https://xvw.lol"
+         title="xvw.lol/"
          class="author">
-        <img class="avatar" alt="" src="https://www.gravatar.com/avatar/3468ebfe22ff0e789d231af21f2dc81f?"/>
-        <span>grm</span>
+        <img class="avatar" alt="" src="https://www.gravatar.com/avatar/77147495ce1de81bd3b4d4044b8367fd?"/>
+        <span>xvw</span>
       </a>
       
     </nav>
@@ -218,125 +218,41 @@
 
 
 <section class="prose">
-<p>We now have <strong>a fully functional blog</strong>, and it’s time to wrap things up.</p>
-
+  <p>
+    This page is currently <strong>being drafted</strong> and has not
+    yet been published.
+  </p>
+  <p>
+    If you are motivated, you can try <a href="https://github.com/yocaml/yocaml-www/blob/main/content/tutorial/metadata-validation-2.md">to complete this page</a>!
+  </p>
 </section>
-
-<article class="prose">
-<p>We’ve had the chance to explore a <em>large collection of YOCaml
-features</em>, but there’s still <strong>so much more</strong>! In this final section,
-we’ll suggest a few ideas for improvements to encourage you to use
-YOCaml <strong>for all your statically generated sites</strong>!</p>
-<h2 id="going-further"><a class="anchor" aria-hidden="true" href="#going-further"></a>Going Further</h2>
-<p>As mentioned in <a href="/tutorial/why.html#against-the-boring-normalized-web">the subjective
-highlights</a>, the
-goal of YOCaml is to provide efficient and composable tools for
-building a website generator perfectly tailored to the user’s
-needs. That’s why the standard YOCaml distribution does not include
-any <em>bundles</em> for quickly creating a site. The first simple step you
-could take is to customize the templates we used or, <strong>even better</strong>,
-rewrite your entire site from scratch, giving free rein to your
-imagination and ambitions!</p>
-<h3 id="publishing-your-site"><a class="anchor" aria-hidden="true" href="#publishing-your-site"></a>Publishing Your Site</h3>
-<p>In this guide, we haven’t covered deployment at all. This is mainly
-because, <em>often</em> (except when generating a site in a <a href="https://ocaml.org/p/yocaml_git/latest">Git
-repository</a>), the artifacts are
-generated in a directory (in our tutorial, <code>_www</code>), making deployment
-<em>trivial</em>. You simply need to move the contents of the directory to
-your server.</p>
-<blockquote>
-<p>If you want to use <a href="https://docs.github.com/en/pages">GitHub Pages</a>
-to deploy your site, the
-<a href="https://github.com/peaceiris/actions-gh-pages">actions-gh-pages</a>
-action is well documented. You can find an example of deployment
-<a href="https://github.com/yocaml/yocaml-www/blob/main/.github/workflows/deploy.yml">here</a>,
-which was used to deploy this manual.</p>
-</blockquote>
-<h3 id="code-organization"><a class="anchor" aria-hidden="true" href="#code-organization"></a>Code Organization</h3>
-<p>For simplicity, we implemented our generator entirely in the <code>blog.ml</code>
-file. An obvious improvement would be to reorganize your binary into
-multiple modules.</p>
-<h3 id="documentation"><a class="anchor" aria-hidden="true" href="#documentation"></a>Documentation</h3>
-<p>The <a href="https://yocaml.github.io/doc/">YOCaml documentation</a> is quite
-extensive, but since you’ve followed this tutorial, you should now be
-more familiar with the concepts involved, making it easier to
-navigate. We encourage you to explore it for alternative explanations
-of what we’ve covered and to find new ideas for possible
-implementations!</p>
-<h4 id="specific-tutorials"><a class="anchor" aria-hidden="true" href="#specific-tutorials"></a>Specific Tutorials</h4>
-<p>In addition to the documentation, you’ll find specific tutorials in
-the <em>sidebar</em> that cover particular aspects of YOCaml. We encourage
-you to explore them to become increasingly proficient!</p>
-<h2 id="improvements"><a class="anchor" aria-hidden="true" href="#improvements"></a>Improvements</h2>
-<p>Even though a project <strong>can always be improved</strong>, some aspects were
-intentionally left aside to keep this tutorial simple. For example,
-while we praised <strong>YOCaml’s minimalism</strong>, we realize that articles are
-still traversed and parsed three times:</p>
-<ul>
-<li>To build each page dedicated to an article</li>
-<li>To create the index</li>
-<li>To generate the ATOM feed</li>
-</ul>
-<p>In practice, <strong>this is far from a problem</strong>, because, let’s be honest,
-reaching a writing frequency high enough for parsing articles three
-times to become an issue is quite ambitious.</p>
-<p>However, during our iterations and <em>batches</em>, we mainly used the
-<code>Batch.iter_files</code> action. If you check the
-<a href="https://yocaml.github.io/doc/yocaml/yocaml/Yocaml/Batch/index.html"><code>Batch</code></a>
-module, you’ll quickly see there are many alternatives. For example,
-when traversing the articles, you could use
-<a href="https://yocaml.github.io/doc/yocaml/yocaml/Yocaml/Batch/index.html#val-fold_files"><code>fold_files</code></a>
-to <strong>maintain the list of articles just once</strong>, and then use it to
-build both the index and the feed.</p>
-<h2 id="conclusion"><a class="anchor" aria-hidden="true" href="#conclusion"></a>Conclusion</h2>
-<p>The tutorial is coming to an end! We hope it has motivated you to
-seriously use YOCaml to build your own website, because <strong>we believe
-this is very important for a diverse web</strong>. Additionally, from our
-perspective, maintaining your own website is an <strong>interesting and
-useful</strong> exercise.</p>
-<p>YOCaml’s API is extensive yet designed to be modular, allowing you to
-build a site generator <em>generically</em> that perfectly fits your
-needs. While this requires a small investment in writing code, it
-ultimately simplifies your workflow.</p>
-<p>Please don’t hesitate to <a href="https://github.com/yocaml/yocaml-www/issues">give us
-feedback</a> on how to
-improve this tutorial, the YOCaml API, or to request additional
-tutorials. We are very receptive to suggestions and always happy to
-receive <em>feedback</em>.</p>
-
-</article>
 
 
 
       
       <div class="prev-next">
         
-        <a href="/tutorial/simple-blog-feed.html"
-           title="Creating an ATOM syndication feed"
+        <a href="/tutorial/metadata-validation.html"
+           title="Understanding how to validate data"
            class="previous">
           <h4>Previous</h4>
-          <span class="section-title">Your first blog</span>
-          <span>Creating a syndication feed</span>
+          <span class="section-title">Your own Data Model</span>
+          <span>From data to values</span>
         </a>
         
         
-        <a href="/tutorial/metadata-intro.html"
-           title="Understanding how to create and validate data"
+        <a href="/tutorial/path.html"
+           title="An explanation of how paths work"
            class="next">
           <h4>Next</h4>
-          <span class="section-title">Your own Data Model</span>
-          <span>Introduction to Metadata</span>
+          <span class="section-title">Specifics</span>
+          <span>Path manipulation</span>
         </a>
         
       </div>
       
     </section>
     <aside class="toc yo--navigation">
-      
-      <nav id="active-toc">
-        <h4>Table of content</h4>
-        <ul><li><a href="#going-further" data-toc-target="going-further">Going Further</a><ul><li><a href="#publishing-your-site" data-toc-target="publishing-your-site">Publishing Your Site</a></li><li><a href="#code-organization" data-toc-target="code-organization">Code Organization</a></li><li><a href="#documentation" data-toc-target="documentation">Documentation</a><ul><li><a href="#specific-tutorials" data-toc-target="specific-tutorials">Specific Tutorials</a></li></ul></li></ul></li><li><a href="#improvements" data-toc-target="improvements">Improvements</a></li><li><a href="#conclusion" data-toc-target="conclusion">Conclusion</a></li></ul>
-      </nav>
       
     </aside>
   </div>
@@ -369,7 +285,7 @@ receive <em>feedback</em>.</p>
               Site
             </a>
             
-            <a href="https://github.com/yocaml/yocaml-www/blob/main/content/tutorial/simple-blog-final.md">
+            <a href="https://github.com/yocaml/yocaml-www/blob/main/content/tutorial/metadata-validation-2.md">
               Page source
             </a>
             
