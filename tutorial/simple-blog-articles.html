@@ -369,12 +369,12 @@ program:</p>
 <p>And there you have it! We can now create our first article in
 <code>content/articles</code>:</p>
 <pre><code><span class='markdown-punctuation-definition-begin'>---</span><span class='markdown-meta-embedded-block'>
-</span><span class='markdown-meta-embedded-block'>title: My first Article
-</span><span class='markdown-meta-embedded-block'>description: Here is my first article
-</span><span class='markdown-meta-embedded-block'>date: 2025-09-08
+</span><span class='markdown-text-html'>title: My first Article
+</span><span class='markdown-text-html'>description: Here is my first article
+</span><span class='markdown-text-html'>date: 2025-09-08
 </span><span class='markdown-punctuation-definition-begin'>---</span><span class='markdown-meta-embedded-block'>
-</span><span class='markdown-meta-embedded-block'>
-</span><span class='markdown-meta-embedded-block'>Hello **World**! This is my first article
+</span><span class='markdown-text-html'>
+</span><span class='markdown-meta-paragraph'>Hello **World**! This is my first article
 </span></code></pre>
 <p>Then test our generator with: <code>dune exec bin/blog.exe server</code>. And
 there you go! We now support article creation! As you can see, the
@@ -474,14 +474,14 @@ thoroughly explains the syntax subtleties used here.</p>
 </blockquote>
 <p>Now we can generalize the iteration over our documents and rewrite our
 <code>create_pages</code> and <code>create_articles</code> functions:</p>
-<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_document</span><span class='ocaml-source'> </span><span class='ocaml-source'>document_kind</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_documents</span><span class='ocaml-source'> </span><span class='ocaml-source'>document_kind</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>where</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>is_markdown</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>sources</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>document_sources</span><span class='ocaml-source'> </span><span class='ocaml-source'>document_kind</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Batch</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>iter_files</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>where</span><span class='ocaml-source'> </span><span class='ocaml-source'>sources</span><span class='ocaml-source'> 
 </span><span class='ocaml-source'>     </span><span class='ocaml-source'>(</span><span class='ocaml-source'>create_document</span><span class='ocaml-source'> </span><span class='ocaml-source'>document_kind</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  
-</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_pages</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>create_document</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Page</span><span class='ocaml-source'>
-</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_articles</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>create_document</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Article</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_pages</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>create_documents</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Page</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>create_articles</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>create_documents</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Article</span><span class='ocaml-source'>
 </span></code></pre>
 <p>The goal of this refactoring was to emphasize (once again) that
 creating a site generator with YOCaml involves writing a <em>normal</em>
