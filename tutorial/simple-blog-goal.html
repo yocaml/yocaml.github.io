@@ -330,7 +330,7 @@ with the following code:</p>
 </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>program</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Eff</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>cache</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Path</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>www</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>.cache</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
-</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>restore_cache</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>restore_cache</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  </span><span class='ocaml-keyword-operator'>&gt;&gt;=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Action</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>store_cache</span><span class='ocaml-source'> </span><span class='ocaml-source'>cache</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>
 </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Yocaml_unix</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>run</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>level</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-constant-language-polymorphic-variant'>`Debug</span><span class='ocaml-source'> </span><span class='ocaml-source'>program</span><span class='ocaml-source'>
@@ -341,10 +341,6 @@ with the following code:</p>
 create/move all our files, here <code>www</code>.</p>
 </li>
 <li>
-<p>We create various shortcuts to quickly reference the different
-directories we just created (to get familiar with the Path API).</p>
-</li>
-<li>
 <p>Since no actions are written yet, we simply read the cache and then
 save it. Later, our <strong>Actions</strong> will be placed between the cache
 restoration and storage steps.</p>
@@ -352,9 +348,9 @@ restoration and storage steps.</p>
 </ul>
 <p>Here is an example of adding some action in the code:</p>
 <pre><code><span class='diff-source'> open Yocaml
-</span><span class='diff-source'>  
+</span><span class='diff-source'>
 </span><span class='diff-source'> let www = Path.rel [ &quot;_www&quot; ]
-</span><span class='diff-source'>  
+</span><span class='diff-source'>
 </span><span class='diff-source'> let program () =
 </span><span class='diff-source'>   let open Eff in
 </span><span class='diff-source'>   let cache = Path.(www / &quot;.cache&quot;) in
