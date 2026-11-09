@@ -361,7 +361,7 @@ file to the list that we <em>pipe</em>:</p>
 </span><span class='diff-source'>         ; css / &quot;style.css&quot; ])
 </span></code></pre>
 <p>When we run <code>dune exec bin/blog.exe</code> again (and the file
-<code>assets/css/a-new-file.css</code> exists), the <code>_www/style.css</code> file is
+<code>assets/css/a-new-file.css</code> exists), the file <code>_www/style.css</code> is
 correctly updated. This is expected, as the dependencies of the task
 used in <code>create_css</code> do include <code>assets/css/a-new-file.css</code>.</p>
 <p>However, if we change the order of the <em>pipe</em>, for example like this:</p>
@@ -376,12 +376,12 @@ used in <code>create_css</code> do include <code>assets/css/a-new-file.css</code
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>        ; css / &quot;reset.css&quot;
 </span><span class='diff-source'>         ; css / &quot;style.css&quot; ])
 </span></code></pre>
-<p>The reason is <em>logical</em>, though somewhat surprising: changing the
-order does not alter the set of dependencies. In fact, our use of
-<code>pipe_files</code> introduces an implicit dependency: <strong>the site generator
-itself</strong>, since it is the generator code (here <code>blog.ml</code>) that
-determines the order of the files. This is therefore also a
-dependency.</p>
+<p>The file <code>_www/style.css</code> is not updated. The reason is <em>logical</em>,
+though somewhat surprising: changing the order does not alter the set of
+dependencies. In fact, our use of <code>pipe_files</code> introduces an implicit
+dependency: <strong>the site generator itself</strong>, since it is the generator
+code (here <code>blog.ml</code>) that determines the order of the files. This is
+therefore also a dependency.</p>
 <p>There are several ways to handle this kind of situation. The first
 would be to use a file that exposes the list of files and the order in
 which we want to <em>pipe</em> them. This is generally good practice because
